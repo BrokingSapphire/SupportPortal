@@ -53,7 +53,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="fixed font-poppins w-full top-0 z-50 bg-white backdrop-blur-md shadow-sm">
-        <div className="xl:max-w-7xl mx-auto flex items-center justify-between py-4 pl-4 px-6 lg:px-20">
+        <div className="w-full mx-auto flex items-center justify-between py-4 pl-4 px-6 lg:px-20">
           <Link href="/">
             <div className="items-center flex">
               <Image
@@ -92,11 +92,11 @@ const Navbar = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex space-x-4">
-            <Link href="https://terminal.sapphirebroking.com" target="_blank" rel="noopener noreferrer">
-              <a className="px-4 py-2 border border-[#064D51] rounded text-[#064D51] hover:bg-[#064D51] hover:text-white transition-colors duration-200">Login</a>
+            <Link href="https://terminal.sapphirebroking.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 border border-[#064D51] rounded text-[#064D51] hover:bg-[#064D51] hover:text-white transition-colors duration-200">
+              Login
             </Link>
-            <Link href="https://signup.sapphirebroking.com" rel="noopener noreferrer">
-              <a className="px-4 py-2 border border-[#064D51] rounded bg-[#064D51] text-white hover:bg-[#043638] transition-colors duration-200">Signup</a>
+            <Link href="https://signup.sapphirebroking.com" rel="noopener noreferrer" className="px-4 py-2 border border-[#064D51] rounded bg-[#064D51] text-white hover:bg-[#043638] transition-colors duration-200">
+              Signup
             </Link>
           </div>
 
@@ -195,11 +195,11 @@ const Navbar = () => {
 
           {/* Auth Section */}
           <div className="mt-auto space-y-4 border-t border-gray-200 pt-6">
-            <Link href="https://terminal.sapphirebroking.com" target="_blank" className="block">
-              <a className="block w-full px-4 py-2 border border-[#064D51] rounded text-[#064D51] hover:bg-[#064D51] hover:text-white transition-colors duration-200 text-center">Login</a>
+            <Link href="https://terminal.sapphirebroking.com" target="_blank" className="block w-full px-4 py-2 border border-[#064D51] rounded text-[#064D51] hover:bg-[#064D51] hover:text-white transition-colors duration-200 text-center">
+              Login
             </Link>
-            <Link href="https://signup.sapphirebroking.com" className="block">
-              <a className="block w-full px-4 py-2 border border-[#064D51] rounded bg-[#064D51] text-white hover:bg-[#043638] transition-colors duration-200 text-center">Signup</a>
+            <Link href="https://signup.sapphirebroking.com" className="block w-full px-4 py-2 border border-[#064D51] rounded bg-[#064D51] text-white hover:bg-[#043638] transition-colors duration-200 text-center">
+              Signup
             </Link>
           </div>
 
