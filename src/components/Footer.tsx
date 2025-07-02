@@ -117,7 +117,7 @@ const LegalSection = () => {
   }
 
   return (
-    <div className="text-xs sm:text-[14px] space-y-4 border-t border-teal-800 pt-6 ">
+    <div className="text-xs sm:text-[14px] space-y-4 border-t border-teal-800 pt-6 xl:max-w-7xl mx-auto">
       <div className="grid gap-4">
         {/* Legal Name */}
         <p>

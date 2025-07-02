@@ -1,370 +1,41 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight, Search, ArrowLeft } from 'lucide-react';
+import { ChevronRight, Search, ArrowLeft, ChevronDown } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
-
-// Sample questions data with sidebar structure for all topics/doubts
-const questionsData: { [key: string]: { [key: string]: any } } = {
-  'account-opening': {
-    'resident-individual': {
-      title: 'Residential Individual',
-      description: 'Account opening process for Indian residents',
-      sidebarCategories: [
-        {
-          id: 'account-opening-process',
-          title: 'Account opening process',
-          questions: [
-            {
-              id: 'how-to-create-account',
-              question: 'How do I create a new account with Sapphire Broking?',
-              summary: 'Step-by-step guide to open a new trading account'
-            },
-            {
-              id: 'required-documents',
-              question: 'What documents are required for account opening?',
-              summary: 'Complete list of mandatory documents needed'
-            },
-            {
-              id: 'check-application-status',
-              question: 'How can I check the status of my account application?',
-              summary: 'Various ways to track your application progress'
-            },
-            {
-              id: 'application-rejected',
-              question: 'Why was my account application rejected or delayed?',
-              summary: 'Common reasons for rejection and how to resolve them'
-            }
-          ]
-        },
-        {
-          id: 'account-management',
-          title: 'Account management',
-          questions: [
-            {
-              id: 'update-personal-details',
-              question: 'How do I update my personal details (email, mobile, address)?',
-              summary: 'Process to modify your personal information'
-            },
-            {
-              id: 'bank-account-update',
-              question: 'Can I update my bank account or add a secondary account?',
-              summary: 'Managing your linked bank accounts'
-            },
-            {
-              id: 'reset-password',
-              question: 'How do I reset my password or recover my login ID?',
-              summary: 'Account recovery procedures and security'
-            },
-            {
-              id: 'client-id-location',
-              question: 'What is my client ID and where can I find it?',
-              summary: 'Understanding and locating your unique client identifier'
-            }
-          ]
-        },
-        {
-          id: 'security-issues',
-          title: 'Security and Issues',
-          questions: [
-            {
-              id: 'close-account',
-              question: 'How do I close or deactivate my account?',
-              summary: 'Account closure process and requirements'
-            },
-            {
-              id: 'unauthorized-activity',
-              question: 'What should I do if I suspect unauthorized activity on my account?',
-              summary: 'Security measures and reporting procedures'
-            }
-          ]
-        }
-      ]
-    },
-    'minor': {
-      title: 'Minor',
-      description: 'Account opening for minors and guardianship',
-      sidebarCategories: [
-        {
-          id: 'eligibility-requirements',
-          title: 'Eligibility and Requirements',
-          questions: [
-            {
-              id: 'minor-account-eligibility',
-              question: 'Who is eligible to open a minor account?',
-              summary: 'Age requirements and eligibility criteria for minor accounts'
-            },
-            {
-              id: 'guardian-requirements',
-              question: 'What are the guardian requirements for minor accounts?',
-              summary: 'Guardian eligibility and documentation needed'
-            },
-            {
-              id: 'minor-account-documents',
-              question: 'What documents are required for minor account opening?',
-              summary: 'Complete documentation list for minor accounts'
-            }
-          ]
-        },
-        {
-          id: 'account-limitations',
-          title: 'Account Limitations',
-          questions: [
-            {
-              id: 'minor-account-limitations',
-              question: 'What are the limitations of a minor trading account?',
-              summary: 'Trading restrictions and limitations for minors'
-            },
-            {
-              id: 'guardian-authorization',
-              question: 'How does guardian authorization work for trading?',
-              summary: 'Guardian approval process for trading activities'
-            },
-            {
-              id: 'multiple-guardians',
-              question: 'Can there be multiple guardians for one minor account?',
-              summary: 'Managing multiple guardian arrangements'
-            }
-          ]
-        },
-        {
-          id: 'account-management',
-          title: 'Account Management',
-          questions: [
-            {
-              id: 'minor-to-major-conversion',
-              question: 'How to convert minor account to major when turning 18?',
-              summary: 'Process to upgrade account when reaching majority'
-            },
-            {
-              id: 'minor-account-closure',
-              question: 'Can a minor account be closed before turning 18?',
-              summary: 'Account closure procedures for minor accounts'
-            }
-          ]
-        }
-      ]
-    }
-  },
-  'funds': {
-    'add-money': {
-      title: 'Add Money',
-      description: 'Various ways to add funds to your account',
-      sidebarCategories: [
-        {
-          id: 'payment-methods',
-          title: 'Payment Methods',
-          questions: [
-            {
-              id: 'available-payment-methods',
-              question: 'What payment methods are available to add money?',
-              summary: 'All available options for funding your account'
-            },
-            {
-              id: 'instant-transfer',
-              question: 'How to add money instantly to my account?',
-              summary: 'Fastest ways to transfer funds immediately'
-            },
-            {
-              id: 'bank-transfer-time',
-              question: 'How long does bank transfer take to reflect?',
-              summary: 'Timeline for different transfer methods'
-            }
-          ]
-        },
-        {
-          id: 'limits-amounts',
-          title: 'Limits and Amounts',
-          questions: [
-            {
-              id: 'minimum-amount',
-              question: 'What is the minimum amount I can add?',
-              summary: 'Minimum deposit requirements and limits'
-            },
-            {
-              id: 'maximum-amount',
-              question: 'What is the maximum amount I can add per day?',
-              summary: 'Daily deposit limits and restrictions'
-            }
-          ]
-        },
-        {
-          id: 'troubleshooting',
-          title: 'Troubleshooting',
-          questions: [
-            {
-              id: 'failed-transaction',
-              question: 'What to do if my money transfer fails?',
-              summary: 'Troubleshooting failed payment transactions'
-            },
-            {
-              id: 'pending-transaction',
-              question: 'Why is my money transfer showing as pending?',
-              summary: 'Understanding pending transaction statuses'
-            }
-          ]
-        }
-      ]
-    },
-    'withdraw-money': {
-      title: 'Withdraw Money',
-      description: 'How to withdraw funds from your account',
-      sidebarCategories: [
-        {
-          id: 'withdrawal-process',
-          title: 'Withdrawal Process',
-          questions: [
-            {
-              id: 'how-to-withdraw',
-              question: 'How do I withdraw money from my account?',
-              summary: 'Step-by-step withdrawal process'
-            },
-            {
-              id: 'withdrawal-time',
-              question: 'How long does it take to process withdrawals?',
-              summary: 'Timeline for withdrawal processing'
-            }
-          ]
-        },
-        {
-          id: 'withdrawal-limits',
-          title: 'Limits and Charges',
-          questions: [
-            {
-              id: 'minimum-withdrawal',
-              question: 'What is the minimum withdrawal amount?',
-              summary: 'Minimum amount requirements for withdrawals'
-            },
-            {
-              id: 'withdrawal-charges',
-              question: 'Are there any charges for withdrawing money?',
-              summary: 'Fee structure for withdrawal transactions'
-            }
-          ]
-        }
-      ]
-    }
-  },
-  'trading': {
-    'equity': {
-      title: 'Equity Trading',
-      description: 'Stock trading and equity investments',
-      sidebarCategories: [
-        {
-          id: 'getting-started',
-          title: 'Getting Started',
-          questions: [
-            {
-              id: 'how-to-buy-stocks',
-              question: 'How do I buy my first stock?',
-              summary: 'Complete guide to placing your first equity order'
-            },
-            {
-              id: 'stock-market-hours',
-              question: 'What are the stock market trading hours?',
-              summary: 'Market timings and trading sessions'
-            }
-          ]
-        },
-        {
-          id: 'order-types',
-          title: 'Order Types',
-          questions: [
-            {
-              id: 'market-vs-limit-orders',
-              question: 'What is the difference between market and limit orders?',
-              summary: 'Understanding different order types and when to use them'
-            },
-            {
-              id: 'stop-loss-orders',
-              question: 'How do stop-loss orders work?',
-              summary: 'Risk management through stop-loss orders'
-            }
-          ]
-        }
-      ]
-    },
-    'derivatives': {
-      title: 'Derivatives',
-      description: 'Futures and options trading',
-      sidebarCategories: [
-        {
-          id: 'basics',
-          title: 'Derivatives Basics',
-          questions: [
-            {
-              id: 'what-are-derivatives',
-              question: 'What are derivatives and how do they work?',
-              summary: 'Introduction to futures and options trading'
-            },
-            {
-              id: 'margin-requirements',
-              question: 'What are margin requirements for derivatives?',
-              summary: 'Understanding margin and leverage in derivatives'
-            }
-          ]
-        }
-      ]
-    }
-  },
-  'your-sapphire-account': {
-    'profile-management': {
-      title: 'Profile Management',
-      description: 'Manage your personal and trading profile',
-      sidebarCategories: [
-        {
-          id: 'personal-details',
-          title: 'Personal Details',
-          questions: [
-            {
-              id: 'update-contact-info',
-              question: 'How do I update my contact information?',
-              summary: 'Changing email, phone, and address details'
-            },
-            {
-              id: 'update-bank-details',
-              question: 'How do I update my bank account details?',
-              summary: 'Managing linked bank accounts'
-            }
-          ]
-        },
-        {
-          id: 'security',
-          title: 'Security Settings',
-          questions: [
-            {
-              id: 'change-password',
-              question: 'How do I change my password?',
-              summary: 'Steps to update your account password'
-            },
-            {
-              id: 'enable-2fa',
-              question: 'How do I enable two-factor authentication?',
-              summary: 'Setting up additional security for your account'
-            }
-          ]
-        }
-      ]
-    }
-  }
-};
+import { getDoubtsByTopic, getQuestionsByDoubt, getTopicTitle, getDoubtTitle } from '@/constants';
 
 const DoubtPage: React.FC = () => {
   const params = useParams();
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [expandedDoubt, setExpandedDoubt] = useState<string>(params.doubt as string);
 
   const topic = params.topic as string;
   const doubt = params.doubt as string;
-  const doubtInfo = questionsData[topic]?.[doubt];
+  
+  // Get data from constants
+  const topicTitle = getTopicTitle(topic);
+  const doubtTitle = getDoubtTitle(topic, doubt);
+  const questions = getQuestionsByDoubt(topic, doubt);
 
-  if (!doubtInfo) {
+  // Debug logging
+  console.log('Topic:', topic);
+  console.log('Doubt:', doubt);
+  console.log('Questions:', questions);
+  console.log('Questions length:', questions?.length);
+
+  const toggleDoubt = (doubtId: string) => {
+    setExpandedDoubt(expandedDoubt === doubtId ? '' : doubtId);
+  };
+
+  if (!topicTitle || !doubtTitle) {
     return (
       <div className="min-h-screen bg-gray-50 pt-20">
         <div className="w-full mx-auto px-6 py-8">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Doubt Not Found</h1>
-            <p className="text-gray-600 mb-8">The doubt you're looking for doesn't exist.</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Page Not Found</h1>
+            <p className="text-gray-600 mb-8">The topic or doubt you're looking for doesn't exist.</p>
             <Link href="/" className="text-blue-600 hover:text-blue-800">
               Back to Help Center
             </Link>
@@ -375,126 +46,142 @@ const DoubtPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
-      {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="w-full mx-auto px-6 py-4">
-          <nav className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link href="/" className="hover:text-blue-600">Home</Link>
-            <ChevronRight className="w-4 h-4" />
-            <Link href="/" className="hover:text-blue-600">Support</Link>
-            <ChevronRight className="w-4 h-4" />
-            <Link href={`/support/${topic}`} className="hover:text-blue-600 capitalize">{topic.replace('-', ' ')}</Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-gray-900 font-medium">{doubtInfo.title}</span>
-          </nav>
+    <div className="min-h-screen bg-white pt-20 mx-auto mb-10">
+      <div className='bg-[#F5F7FA] w-full px-50'>
+        {/* Search Bar */}
+        <div className="bg-[#F5F7FA] px-6 py-2 pb-0 max-w-7xl mx-20">
+          <div className="relative max-w-xl mx-auto mt-10">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-6 w-6 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search for anything..."
+              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+        </div>
+
+        {/* Breadcrumb */}
+        <div className="bg-[#F5F7FA] px-50 mt-10">
+          <div className="w-full mx-auto px-40 py-4">
+            <nav className="flex items-center space-x-2 text-sm text-gray-600">
+              <Link href="/" className="hover:text-blue-600">Home</Link>
+              <ChevronRight className="w-4 h-4" />
+              <Link href="/" className="hover:text-blue-600">Support</Link>
+              <ChevronRight className="w-4 h-4" />
+              <Link href={`/support/${topic}`} className="hover:text-blue-600">{topicTitle}</Link>
+              <ChevronRight className="w-4 h-4" />
+              <span className="text-[#064D51] font-medium">{doubtTitle}</span>
+            </nav>
+          </div>
         </div>
       </div>
 
-      <div className="w-full mx-auto px-6 py-8">
-        <div className="flex gap-6">
-          {/* Sidebar */}
-          <div className="w-64 flex-shrink-0">
-            <div className="bg-white border border-gray-200">
-              <div className="p-4 border-b border-gray-200">
-                <h2 className="text-sm font-semibold text-gray-900 mb-4">Account opening</h2>
-              </div>
-              
-              {/* Categories List */}
-              <div className="py-2">
-                <div className="space-y-1">
-                  <div className="px-3 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Categories
-                  </div>
-                  
-                  {/* Category items */}
-                  <Link href="#" className="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                    <input type="checkbox" className="w-4 h-4 mr-3 rounded border-gray-300" />
-                    Residential Individual
-                  </Link>
-                  
-                  <Link href="#" className="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                    <input type="checkbox" className="w-4 h-4 mr-3 rounded border-gray-300" />
-                    Minor
-                  </Link>
-                  
-                  <Link href="#" className="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                    <input type="checkbox" className="w-4 h-4 mr-3 rounded border-gray-300" />
-                    Non Residential Indian
-                  </Link>
-                  
-                  <Link href="#" className="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                    <input type="checkbox" className="w-4 h-4 mr-3 rounded border-gray-300" />
-                    Company, HUF
-                  </Link>
-                  
-                  <Link href="#" className="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                    <input type="checkbox" className="w-4 h-4 mr-3 rounded border-gray-300" />
-                    Glossary
-                  </Link>
-                </div>
-              </div>
-            </div>
+      <div className="flex w-full mt-10 px-40">
+        {/* Sidebar */}
+        <div className="w-80 bg-white h-full overflow-y-auto">
+          {/* Header */}
+          <div className="p-4 pl-0">
+            <h2 className="text-lg font-semibold text-gray-900">{topicTitle}</h2>
           </div>
 
-          {/* Main Content */}
-          <div className="flex-1">
-            <div className="bg-white">
-              {/* Header with search */}
-              <div className="border-b border-gray-200 p-6">
-                <h1 className="text-2xl font-bold text-gray-900 mb-4">{doubtInfo.title}</h1>
-                
-                {/* Search */}
-                <div className="relative max-w-md">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <input
-                    type="text"
-                    placeholder="Search for anything..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                  />
-                </div>
-              </div>
+          {/* Navigation */}
+          <div className="p-4 pl-0">
+            {getDoubtsByTopic(topic).map((doubtItem) => (
+              <div 
+                key={doubtItem.id} 
+                className={`mb-4 rounded-lg pl-0 ${
+                  doubt === doubtItem.id ? 'bg-[#F5F7FA]' : ''
+                }`}
+              >
+                {/* Doubt Section Header */}
+                <button
+                  onClick={() => toggleDoubt(doubtItem.id)}
+                  className={`flex items-center justify-between w-full p-2 text-left rounded-md transition-colors ${
+                    doubt === doubtItem.id
+                      ? 'bg-[#F5F7FA] text-gray-900'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  <div className="flex items-center">
+                    {expandedDoubt === doubtItem.id ? (
+                      <ChevronDown className="w-7 h-7 mr-2 border border-gray-300 rounded-md text-gray-500" />
+                    ) : (
+                      <ChevronRight className="w-7 h-7 mr-2 border border-gray-300 rounded-md text-gray-500" />
+                    )}
+                    <span className="font-medium">{doubtItem.title}</span>
+                  </div>
+                </button>
 
-              {/* Questions List */}
-              <div className="p-6">
-                <div className="space-y-3">
-                  {doubtInfo.sidebarCategories.map((category: any) =>
-                    category.questions
-                      .filter((question: any) => 
-                        !searchQuery || 
-                        question.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        question.summary.toLowerCase().includes(searchQuery.toLowerCase())
-                      )
-                      .map((question: any) => (
+                {/* Questions List */}
+                {expandedDoubt === doubtItem.id && (
+                  <div className="ml-6 pb-2">
+                    {getQuestionsByDoubt(topic, doubtItem.id).map((question) => {
+                      const isActive = doubt === doubtItem.id && window.location.pathname.includes(question.id);
+                      return (
                         <Link
                           key={question.id}
-                          href={`/support/${topic}/${doubt}/${question.id}`}
-                          className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 group transition-colors"
+                          href={`/support/${topic}/${doubtItem.id}/${question.id}`}
+                          className={`block p-2 text-sm transition-colors ${
+                            isActive
+                              ? 'bg-blue-100 text-blue-800 border-l-[2px] border-black'
+                              : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 border-l border-gray-400'
+                          }`}
                         >
-                          <span className="text-gray-900 group-hover:text-blue-600 transition-colors">
-                            {question.question}
-                          </span>
-                          <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                          <div className="line-clamp-2">{question.question}</div>
                         </Link>
-                      ))
-                  )}
-                </div>
-
-                {/* No results message */}
-                {searchQuery && doubtInfo.sidebarCategories.every((category: any) => 
-                  category.questions.filter((question: any) =>
-                    question.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    question.summary.toLowerCase().includes(searchQuery.toLowerCase())
-                  ).length === 0
-                ) && (
-                  <div className="text-center py-8">
-                    <p className="text-gray-500 text-sm">No questions found for "{searchQuery}"</p>
+                      );
+                    })}
                   </div>
                 )}
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 bg-white border-l-2 border-gray-200 mt-3">
+          <div className="p-8 pt-0">
+            <h1 className="text-xl font-semibold text-gray-900 mb-6">{doubtTitle}</h1>
+            
+            {/* Questions List */}
+            <div className="space-y-3">
+              {questions && questions.length > 0 ? (
+                questions
+                  .filter((question) => 
+                    !searchQuery || 
+                    question.question.toLowerCase().includes(searchQuery.toLowerCase())
+                  )
+                  .map((question) => (
+                    <Link
+                      key={question.id}
+                      href={`/support/${topic}/${doubt}/${question.id}`}
+                      className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 group transition-colors"
+                    >
+                      <span className="text-gray-900 group-hover:text-blue-600 transition-colors">
+                        {question.question}
+                      </span>
+                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                    </Link>
+                  ))
+              ) : (
+                <div className="text-center py-8">
+                  <p className="text-gray-500 text-sm">No questions available for this section.</p>
+                </div>
+              )}
             </div>
+
+            {/* No results message */}
+            {searchQuery && questions && questions.filter((question) =>
+              question.question.toLowerCase().includes(searchQuery.toLowerCase())
+            ).length === 0 && (
+              <div className="text-center py-8">
+                <p className="text-gray-500 text-sm">No questions found for "{searchQuery}"</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

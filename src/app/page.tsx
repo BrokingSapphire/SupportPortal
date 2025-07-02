@@ -150,67 +150,66 @@ const HelpCenterHomepage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="min-h-screen bg-white pt-20 mx-auto">
       {/* Header Section */}
-      <div className="bg-white">
+      <div className="bg-[#F5F7FA]">
         <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="flex items-start justify-between">
-            <div className="flex-1 max-w-2xl">
+          <div className="flex items-center justify-between">
+            <div className="flex-1 max-w-4xl">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">How can we help?</h1>
               <p className="text-gray-500 mb-8">Find instant answers by searching our help center or browsing topics.</p>
               
-              {/* Search Bar */}
-              <form onSubmit={handleSearch} className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Search for anything..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
-                />
-              </form>
+              {/* Search Bar and My Tickets Button Row */}
+              <div className="flex items-center space-x-4">
+                <form onSubmit={handleSearch} className="relative flex-1 max-w-lg">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#064D51] w-5 h-5" />
+                  <input
+                    type="text"
+                    placeholder="Search for anything..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
+                  />
+                </form>
+                
+                <button className="flex items-center space-x-2 px-4 py-3 text-blue-600 transition-colors whitespace-nowrap">
+                  <span className="font-medium text-[#064D51]">My Tickets</span>
+                  <img
+                    src="/home/ticket.svg"
+                    alt="Ticket"
+                    className="w-5 h-5 object-contain"
+                  />
+                </button>
+              </div>
             </div>
             
-            {/* Right Side */}
-            <div className="flex items-center space-x-4 ml-8">
-              <button className="flex items-center space-x-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
-                <span className="font-medium">My Tickets</span>
-              </button>
+            {/* Help Center Illustration */}
+            <div className="ml-8 flex-shrink-0">
               <img
-                src="/home/ticket.svg"
-                alt="Ticket"
-                className="w-5 h-5 object-contain"
+                src="/home/home1.svg"
+                alt="Help Center Illustration"
+                className="w-64 h-40 object-contain"
               />
-              
-              {/* Help Center Illustration */}
-              <div className="w-48 h-32 bg-gradient-to-br from-blue-100 to-orange-100 rounded-lg flex items-center justify-center">
-                <img
-                  src="/home/home1.png"
-                  alt="Help Center Illustration"
-                  className="w-40 h-28 object-contain rounded-lg"
-                />
-              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-6">
+      <div className="bg-white border-t border-gray-200 max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto border-b-2 border-gray-200">
           <div className="flex items-center space-x-8 py-4">
             <h3 className="text-gray-600 font-medium">Browse for help for...</h3>
           </div>
-          <div className="flex space-x-8 -mb-px overflow-x-auto">
+          <div className="flex space-x-8 -mb-px overflow-x-auto bg-white border-b border-gray-200">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => handleTabClick(tab)}
                 className={`py-3 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap ${
                   activeTab === tab
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    ? 'border-[#064D51] text-[#064D51]'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-b-gray-300'
                 }`}
               >
                 {tab}
@@ -221,7 +220,7 @@ const HelpCenterHomepage: React.FC = () => {
       </div>
 
       {/* Help Categories Grid */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="mx-auto max-w-7xl py-8 bg-white">
         {searchQuery && (
           <div className="mb-6">
             <p className="text-gray-600">
@@ -232,17 +231,15 @@ const HelpCenterHomepage: React.FC = () => {
             </p>
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-white max-w-7xl">
           {getFilteredCategories().map((category, index) => (
             <div key={index} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-sm transition-shadow">
               {/* Category Header */}
-              <div className="flex items-start mb-4">
-                <div className="p-2 bg-gray-50 rounded-lg mr-3 flex-shrink-0">
-                  {category.icon}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-gray-900 text-base">{category.title}</h3>
-                </div>
+              <div className="p-2 flex items-center justify-center w-10 bg-red-100 rounded-lg">
+                {category.icon}
+              </div>
+              <div className="flex-1 min-w-0 my-3">
+                <h3 className="font-semibold text-gray-900 text-base">{category.title}</h3>
               </div>
 
               {/* Category Links */}

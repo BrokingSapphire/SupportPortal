@@ -52,7 +52,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed font-poppins w-full top-0 z-50 bg-white backdrop-blur-md shadow-sm">
+      <nav className="fixed font-poppins w-full top-0 z-50 bg-white backdrop-blur-md shadow-sm ">
         <div className="w-full mx-auto flex items-center justify-between py-4 pl-4 px-6 lg:px-20">
           <Link href="/">
             <div className="items-center flex">
