@@ -3,7 +3,6 @@
 
 import { usePathname } from "next/navigation";
 import Footer from "./Footer";
-// import Opportunities from "./product/Opportunities"; // Temporarily removed due to missing module
 
 // Pages that should not display the footer
 const excludedPaths = [
@@ -36,8 +35,9 @@ export default function FooterWrapper() {
 
   return (
     <>
-      {/* <Opportunities /> */}
-      <Footer />
+      <div className="">
+        <Footer />
+      </div>
     </>
   );
 }
