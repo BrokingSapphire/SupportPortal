@@ -1,13 +1,13 @@
-export interface Doubt {
+export interface Subcategory {
   id: string;
   title: string;
 }
 
-export interface TopicDoubts {
-  [topicId: string]: Doubt[];
+export interface TopicSubcategories {
+  [topicId: string]: Subcategory[];
 }
 
-export const doubts: TopicDoubts = {
+export const subcategories: TopicSubcategories = {
   'account-opening-kyc': [
     {
       id: 'documents-eligibility',
@@ -584,17 +584,17 @@ export const doubts: TopicDoubts = {
   ]
 };
 
-export const getDoubtsByTopic = (topicId: string): Doubt[] => {
-  return doubts[topicId] || [];
+export const getSubcategoriesByTopic = (topicId: string): Subcategory[] => {
+  return subcategories[topicId] || [];
 };
 
-export const getDoubtById = (topicId: string, doubtId: string): Doubt | undefined => {
-  const topicDoubts = doubts[topicId];
-  return topicDoubts?.find(doubt => doubt.id === doubtId);
+export const getSubcategoryById = (topicId: string, subcategoryId: string): Subcategory | undefined => {
+  const topicSubcategories = subcategories[topicId];
+  return topicSubcategories?.find(subcategory => subcategory.id === subcategoryId);
 };
 
-export const getDoubtTitle = (topicId: string, doubtId: string): string => {
-  const doubt = getDoubtById(topicId, doubtId);
-  return doubt ? doubt.title : doubtId;
+export const getSubcategoryTitle = (topicId: string, subcategoryId: string): string => {
+  const subcategory = getSubcategoryById(topicId, subcategoryId);
+  return subcategory ? subcategory.title : subcategoryId;
 };
 

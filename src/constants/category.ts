@@ -1,9 +1,9 @@
-export interface Topic {
+export interface Category {
   id: string;
   title: string;
 }
 
-export const topics: Topic[] = [
+export const topics: Category[] = [
   {
     id: 'account-opening-kyc',
     title: 'Account Opening & KYC'
@@ -62,11 +62,11 @@ export const topics: Topic[] = [
   }
 ];
 
-export const getTopicById = (id: string): Topic | undefined => {
+export const getCategoryById = (id: string): Category | undefined => {
   return topics.find(topic => topic.id === id);
 };
 
-export const getTopicTitle = (id: string): string => {
-  const topic = getTopicById(id);
-  return topic ? topic.title : id;
+export const getCategoryTitle = (id: string): string => {
+  const category = getCategoryById(id);
+  return category ? category.title : id;
 };
