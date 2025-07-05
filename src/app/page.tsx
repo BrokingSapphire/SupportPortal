@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, User, FileText, TrendingUp, BarChart3, Monitor, CreditCard } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 interface HelpLink {
   text: string;
@@ -31,18 +31,30 @@ const HelpCenterHomepage: React.FC = () => {
 
   const helpCategories: HelpCategory[] = [
     {
-      icon: <User className="w-5 h-5 text-red-500" />,
+      icon: (
+        <img 
+          src="/home/account opening.svg" 
+          alt="Account Opening" 
+          className="w-5 h-5"
+        />
+      ),
       title: 'Account Opening',
       links: [
         { text: 'Resident Individual', color: 'text-blue-500', href: '/support/account-opening/resident-individual' },
         { text: 'Minor', color: 'text-blue-500', href: '/support/account-opening/minor' },
         { text: 'Non-Residential Indian (NRI)', color: 'text-blue-500', href: '/support/account-opening/nri' },
-        { text: 'Company, Partnership, HUF and LLP', color: 'text-blue-500', href: '/support/account-opening/company-huf' },
+        { text: 'Company, Partnership, HUF and LLP', color: 'text-blue-500', href: '/support/account-opening/corporate' },
         { text: 'Glossary', color: 'text-blue-500', href: '/support/account-opening/glossary' }
       ]
     },
     {
-      icon: <User className="w-5 h-5 text-blue-500" />,
+      icon: (
+        <img 
+          src="/home/account.svg" 
+          alt="Your Sapphire Account" 
+          className="w-5 h-5"
+        />
+      ),
       title: 'Your Sapphire Account',
       links: [
         { text: 'Your Profile', color: 'text-blue-500', href: '/support/your-sapphire-account/profile-management' },
@@ -53,7 +65,13 @@ const HelpCenterHomepage: React.FC = () => {
       ]
     },
     {
-      icon: <CreditCard className="w-5 h-5 text-blue-500" />,
+      icon: (
+        <img 
+          src="/home/funds.svg" 
+          alt="Funds" 
+          className="w-5 h-5"
+        />
+      ),
       title: 'Funds',
       links: [
         { text: 'Add money', color: 'text-blue-500', href: '/support/funds/add-money' },
@@ -65,7 +83,13 @@ const HelpCenterHomepage: React.FC = () => {
       ]
     },
     {
-      icon: <TrendingUp className="w-5 h-5 text-red-500" />,
+      icon: (
+        <img 
+          src="/home/mutual funds.svg" 
+          alt="Mutual Funds" 
+          className="w-5 h-5"
+        />
+      ),
       title: 'Mutual Funds',
       links: [
         { text: 'Mutual Funds', color: 'text-blue-500', href: '/support/mutual-funds/mutual-funds' },
@@ -76,7 +100,13 @@ const HelpCenterHomepage: React.FC = () => {
       ]
     },
     {
-      icon: <BarChart3 className="w-5 h-5 text-red-500" />,
+      icon: (
+        <img 
+          src="/home/reports.svg" 
+          alt="Reports" 
+          className="w-5 h-5"
+        />
+      ),
       title: 'Reports',
       links: [
         { text: 'Portfolio', color: 'text-blue-500', href: '/support/reports/portfolio' },
@@ -88,7 +118,13 @@ const HelpCenterHomepage: React.FC = () => {
       ]
     },
     {
-      icon: <Monitor className="w-5 h-5 text-red-500" />,
+      icon: (
+        <img 
+          src="/home/terminal.svg" 
+          alt="Terminal" 
+          className="w-5 h-5"
+        />
+      ),
       title: 'Terminal',
       links: [
         { text: 'IPO', color: 'text-blue-500', href: '/support/terminal/ipo' },
@@ -238,7 +274,7 @@ const HelpCenterHomepage: React.FC = () => {
               <div className="p-2 flex items-center justify-center w-10 bg-red-100 rounded-lg">
                 {category.icon}
               </div>
-              <div className="flex-1 min-w-0 my-3">
+              <div className="flex-1 min-w-0 my-[18px]">
                 <h3 className="font-semibold text-gray-900 text-base">{category.title}</h3>
               </div>
 
