@@ -24,11 +24,12 @@ export interface TopicQuestions {
 }
 
 export const questions: TopicQuestions = {
-  'account-opening-kyc': {
-    'documents-eligibility': {
-      'required-documents-resident': {
-        id: 'required-documents-resident',
-        question: 'What documents are required for resident Indian account opening?',
+  "account-opening-kyc": {
+    "documents-eligibility": {
+      "required-documents-resident": {
+        id: "required-documents-resident",
+        question:
+          "What documents are required for resident Indian account opening?",
         answer: `<p>To open a Sapphire Broking account as a resident Indian, you need the following documents:</p>
             
             <h3>Mandatory Documents</h3>
@@ -52,19 +53,20 @@ export const questions: TopicQuestions = {
               <li>No torn or damaged documents</li>
               <li>Colored scans preferred</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 45,
         notHelpful: 3,
         relatedQuestions: [
           {
-            id: 'nri-documents',
-            question: 'What additional documents do NRI clients need?'
-          }
-        ]
+            id: "nri-documents",
+            question: "What additional documents do NRI clients need?",
+          },
+        ],
       },
-      'eligibility-criteria': {
-        id: 'eligibility-criteria',
-        question: 'What are the eligibility criteria for opening a trading account?',
+      "eligibility-criteria": {
+        id: "eligibility-criteria",
+        question:
+          "What are the eligibility criteria for opening a trading account?",
         answer: `<p>Check if you meet the eligibility requirements for opening a Sapphire Broking account:</p>
             
             <h3>General Eligibility</h3>
@@ -96,15 +98,16 @@ export const questions: TopicQuestions = {
               <li>Willful defaulters</li>
               <li>Court-restricted individuals</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 32,
-        notHelpful: 1
-      }
+        notHelpful: 1,
+      },
     },
-    'kyc-process-verification': {
-      'in-person-verification': {
-        id: 'in-person-verification',
-        question: 'What is In-Person Verification (IPV) and how to complete it?',
+    "kyc-process-verification": {
+      "in-person-verification": {
+        id: "in-person-verification",
+        question:
+          "What is In-Person Verification (IPV) and how to complete it?",
         answer: `<p>In-Person Verification (IPV) is a mandatory step to verify your identity during account opening:</p>
             
             <h3>What is IPV?</h3>
@@ -137,15 +140,15 @@ export const questions: TopicQuestions = {
               <li>Hold documents steady</li>
               <li>Follow all instructions carefully</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 28,
-        notHelpful: 4
-      }
+        notHelpful: 4,
+      },
     },
-    'account-opening-methods': {
-      'online-account-opening': {
-        id: 'online-account-opening',
-        question: 'How to open account online step by step?',
+    "account-opening-methods": {
+      "online-account-opening": {
+        id: "online-account-opening",
+        question: "How to open account online step by step?",
         answer: `<p>Open your Sapphire Broking account completely online in just a few minutes:</p>
             
             <h3>Step-by-Step Process</h3>
@@ -171,15 +174,16 @@ export const questions: TopicQuestions = {
               <li>Processing: 24-48 hours</li>
               <li>Account activation: 1-2 business days</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 67,
-        notHelpful: 2
-      }
+        notHelpful: 2,
+      },
     },
-    'types-of-accounts': {
-      'individual-vs-joint-account': {
-        id: 'individual-vs-joint-account',
-        question: 'What is the difference between individual and joint trading accounts?',
+    "types-of-accounts": {
+      "individual-vs-joint-account": {
+        id: "individual-vs-joint-account",
+        question:
+          "What is the difference between individual and joint trading accounts?",
         answer: `<p>Choose between individual and joint accounts based on your requirements:</p>
             
             <h3>Individual Account</h3>
@@ -206,15 +210,15 @@ export const questions: TopicQuestions = {
               <li><strong>Joint:</strong> All holders must sign for transactions</li>
               <li><strong>Former or Survivor:</strong> First holder operates, others on death</li>
             </ul>`,
-        lastUpdated: '2025-07-01'
-      }
-    }
+        lastUpdated: "2025-07-01",
+      },
+    },
   },
-  'fund-transfer-withdrawals': {
-    'adding-funds': {
-      'payment-methods': {
-        id: 'payment-methods',
-        question: 'What payment methods are available to add money?',
+  "fund-transfer-withdrawals": {
+    "adding-funds": {
+      "payment-methods": {
+        id: "payment-methods",
+        question: "What payment methods are available to add money?",
         answer: `<p>Sapphire Broking offers multiple convenient payment methods to add funds to your trading account:</p>
             
             <h3>Instant Methods</h3>
@@ -242,19 +246,19 @@ export const questions: TopicQuestions = {
               <li><strong>Debit Card:</strong> Min: ₹1 | Max: ₹2,00,000/day</li>
               <li><strong>NEFT/RTGS:</strong> Min: ₹1 | No upper limit</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 38,
         notHelpful: 2,
         relatedQuestions: [
           {
-            id: 'instant-transfer',
-            question: 'How to add money instantly to my account?'
-          }
-        ]
+            id: "instant-transfer",
+            question: "How to add money instantly to my account?",
+          },
+        ],
       },
-      'instant-transfer': {
-        id: 'instant-transfer',
-        question: 'How to add money instantly to my account?',
+      "instant-transfer": {
+        id: "instant-transfer",
+        question: "How to add money instantly to my account?",
         answer: `<p>For instant fund transfer to your Sapphire Broking account, use any of these methods:</p>
             
             <h3>UPI (Recommended)</h3>
@@ -289,15 +293,15 @@ export const questions: TopicQuestions = {
               <li>Third-party payments not allowed</li>
               <li>Keep payment receipts for reference</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 45,
-        notHelpful: 1
-      }
+        notHelpful: 1,
+      },
     },
-    'withdrawal-of-funds': {
-      'withdrawal-process': {
-        id: 'withdrawal-process',
-        question: 'How to withdraw money from my trading account?',
+    "withdrawal-of-funds": {
+      "withdrawal-process": {
+        id: "withdrawal-process",
+        question: "How to withdraw money from my trading account?",
         answer: `<p>Withdrawing funds from your Sapphire Broking account is simple and secure:</p>
             
             <h3>Withdrawal Methods</h3>
@@ -331,17 +335,17 @@ export const questions: TopicQuestions = {
               <li><strong>Bank Transfer:</strong> No limit (subject to available balance)</li>
               <li><strong>Minimum:</strong> ₹1</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 52,
-        notHelpful: 3
-      }
-    }
+        notHelpful: 3,
+      },
+    },
   },
-  'trading-orders': {
-    'order-types': {
-      'market-vs-limit-orders': {
-        id: 'market-vs-limit-orders',
-        question: 'What is the difference between Market and Limit orders?',
+  "trading-orders": {
+    "order-types": {
+      "market-vs-limit-orders": {
+        id: "market-vs-limit-orders",
+        question: "What is the difference between Market and Limit orders?",
         answer: `<p>Understanding order types is crucial for effective trading. Here's the difference:</p>
             
             <h3>Market Order</h3>
@@ -374,15 +378,15 @@ export const questions: TopicQuestions = {
               <li><strong>Market Order:</strong> High liquidity stocks, urgent trades</li>
               <li><strong>Limit Order:</strong> Illiquid stocks, specific price targets</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 78,
-        notHelpful: 5
-      }
+        notHelpful: 5,
+      },
     },
-    'order-placement-process': {
-      'place-buy-sell-order': {
-        id: 'place-buy-sell-order',
-        question: 'How to place buy and sell orders?',
+    "order-placement-process": {
+      "place-buy-sell-order": {
+        id: "place-buy-sell-order",
+        question: "How to place buy and sell orders?",
         answer: `<p>Placing orders on Sapphire Broking platform is straightforward. Follow these steps:</p>
             
             <h3>Placing a Buy Order</h3>
@@ -426,17 +430,17 @@ export const questions: TopicQuestions = {
               <li>Monitor order status</li>
               <li>Cancel/modify if needed before execution</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 89,
-        notHelpful: 4
-      }
-    }
+        notHelpful: 4,
+      },
+    },
   },
-  'technical-platform-issues': {
-    'login-access-issues': {
-      'forgot-password': {
-        id: 'forgot-password',
-        question: 'How to reset forgotten password?',
+  "technical-platform-issues": {
+    "login-access-issues": {
+      "forgot-password": {
+        id: "forgot-password",
+        question: "How to reset forgotten password?",
         answer: `<p>If you've forgotten your trading account password, follow these steps to reset it:</p>
             
             <h3>Online Password Reset</h3>
@@ -472,65 +476,82 @@ export const questions: TopicQuestions = {
               <li>Don't share with anyone</li>
               <li>Use unique password for trading account</li>
             </ul>`,
-        lastUpdated: '2025-07-01',
+        lastUpdated: "2025-07-01",
         helpful: 67,
-        notHelpful: 3
-      }
-    }
-  }
+        notHelpful: 3,
+      },
+    },
+  },
 };
 
 // Helper functions to work with the new structure
-export const getQuestionsBySubcategory = (topicId: string, subcategoryId: string): Question[] => {
+export const getQuestionsBySubcategory = (
+  topicId: string,
+  subcategoryId: string
+): Question[] => {
   const topicQuestions = questions[topicId];
   const subcategoryQuestions = topicQuestions?.[subcategoryId];
   return subcategoryQuestions ? Object.values(subcategoryQuestions) : [];
 };
 
-export const getQuestion = (topicId: string, subcategoryId: string, questionId: string): Question | undefined => {
+export const getQuestion = (
+  topicId: string,
+  subcategoryId: string,
+  questionId: string
+): Question | undefined => {
   return questions[topicId]?.[subcategoryId]?.[questionId];
 };
 
 export const getAllQuestions = (): Question[] => {
   const allQuestions: Question[] = [];
-  
-  Object.values(questions).forEach(topicQuestions => {
-    Object.values(topicQuestions).forEach(subcategoryQuestions => {
-      Object.values(subcategoryQuestions).forEach(question => {
+
+  Object.values(questions).forEach((topicQuestions) => {
+    Object.values(topicQuestions).forEach((subcategoryQuestions) => {
+      Object.values(subcategoryQuestions).forEach((question) => {
         allQuestions.push(question);
       });
     });
   });
-  
+
   return allQuestions;
 };
 
 export const searchQuestions = (searchTerm: string): Question[] => {
   const allQuestions = getAllQuestions();
   const lowercaseSearch = searchTerm.toLowerCase();
-  
-  return allQuestions.filter(question => 
-    question.question.toLowerCase().includes(lowercaseSearch) ||
-    question.answer.toLowerCase().includes(lowercaseSearch)
+
+  return allQuestions.filter(
+    (question) =>
+      question.question.toLowerCase().includes(lowercaseSearch) ||
+      question.answer.toLowerCase().includes(lowercaseSearch)
   );
 };
 
 export const getQuestionsByTopic = (topicId: string): Question[] => {
   const topicQuestions = questions[topicId];
   const allTopicQuestions: Question[] = [];
-  
+
   if (topicQuestions) {
-    Object.values(topicQuestions).forEach(subcategoryQuestions => {
-      Object.values(subcategoryQuestions).forEach(question => {
+    Object.values(topicQuestions).forEach((subcategoryQuestions) => {
+      Object.values(subcategoryQuestions).forEach((question) => {
         allTopicQuestions.push(question);
       });
     });
   }
-  
+
   return allTopicQuestions;
 };
 
-export const getRelatedQuestions = (topicId: string, subcategoryId: string, currentQuestionId: string): Question[] => {
-  const subcategoryQuestions = getQuestionsBySubcategory(topicId, subcategoryId);
-  return subcategoryQuestions.filter(q => q.id !== currentQuestionId).slice(0, 3);
+export const getRelatedQuestions = (
+  topicId: string,
+  subcategoryId: string,
+  currentQuestionId: string
+): Question[] => {
+  const subcategoryQuestions = getQuestionsBySubcategory(
+    topicId,
+    subcategoryId
+  );
+  return subcategoryQuestions
+    .filter((q) => q.id !== currentQuestionId)
+    .slice(0, 3);
 };
