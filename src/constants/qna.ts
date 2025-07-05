@@ -13,453 +13,216 @@ export interface Question {
   relatedQuestions?: RelatedQuestion[];
 }
 
+export interface SubcategoryQuestions {
+  [questionId: string]: Question;
+}
+
 export interface TopicQuestions {
   [topicId: string]: {
-    [doubtId: string]: {
-      [questionId: string]: Question;
-    };
+    [subcategoryId: string]: SubcategoryQuestions;
   };
 }
 
 export const questions: TopicQuestions = {
-  'account-opening': {
-    'resident-individual': {
-      'how-to-create-account': {
-        id: 'how-to-create-account',
-        question: 'How do I create a new account with Sapphire Broking?',
-        answer: `<p>You can open a Sapphire Broking demat and trading account online for free if you are a resident Indian with your mobile number linked to your Aadhaar.</p>
-            
-            <h3>Required documents</h3>
-            <ul>
-              <li>PAN card</li>
-              <li>Aadhaar number (linked to your mobile)</li>
-              <li>Bank account details (personalised cancelled cheque OR bank statement/passbook with your name, account number, IFSC, MICR and bank seal/logo)</li>
-              <li>Income proof (only required for F&O access)</li>
-            </ul>
-
-            <h3>Steps to open your account</h3>
-            <ol>
-              <li>Visit SignUp.sapphirebroking.com or install the Sapphire Trade app from the App Store or Play Store.</li>
-              <li>Enter your mobile number, verify it via OTP.</li>
-              <li>Enter and verify your email ID.</li>
-              <li>Enter your PAN number and date of birth.</li>
-              <li>Choose your trading segments (Equity, F&O, Currency, etc.), accept terms, and proceed.</li>
-              <li>Enter your Aadhaar number, validate via OTP and Digilocker PIN.</li>
-              <li>Fill in your personal details (name, address, occupation, etc.).</li>
-              <li>Link your bank account via UPI or manually.</li>
-              <li>Complete In-Person Verification (IPV) by capturing a selfie video.</li>
-              <li>Draw or upload your signature.</li>
-              <li>Upload additional documents, if required:
-                <ul>
-                  <li>Bank proof (if bank added manually)</li>
-                  <li>Income proof (for F&O)</li>
-                </ul>
-              </li>
-              <li>Optional: Add a nominee or skip and add later.</li>
-              <li>Digitally sign your application using Aadhaar eSign.</li>
-            </ol>`,
-        lastUpdated: '2025-07-01'
-      },
-      'documents-required': {
-        id: 'documents-required',
-        question: 'What documents are required for account opening?',
-        answer: `<p>To open a Sapphire Broking account, you need the following documents:</p>
+  'account-opening-kyc': {
+    'documents-eligibility': {
+      'required-documents-resident': {
+        id: 'required-documents-resident',
+        question: 'What documents are required for resident Indian account opening?',
+        answer: `<p>To open a Sapphire Broking account as a resident Indian, you need the following documents:</p>
             
             <h3>Mandatory Documents</h3>
             <ul>
-              <li><strong>PAN Card:</strong> Valid PAN card copy</li>
+              <li><strong>PAN Card:</strong> Valid PAN card copy (mandatory for all investors)</li>
               <li><strong>Aadhaar:</strong> Aadhaar number linked to your mobile number</li>
-              <li><strong>Bank Proof:</strong> Cancelled cheque or bank statement</li>
+              <li><strong>Bank Proof:</strong> Cancelled cheque or bank statement with your name, account number, IFSC</li>
             </ul>
 
             <h3>Additional Documents (if required)</h3>
             <ul>
-              <li><strong>Income Proof:</strong> Required for F&O trading access</li>
-              <li><strong>Address Proof:</strong> If Aadhaar address is different</li>
+              <li><strong>Income Proof:</strong> Required for F&O trading access (salary slip, ITR, bank statement)</li>
+              <li><strong>Address Proof:</strong> If Aadhaar address needs verification</li>
+              <li><strong>Photograph:</strong> Recent passport-size photograph</li>
+            </ul>
+
+            <h3>Document Quality Requirements</h3>
+            <ul>
+              <li>Clear, readable scanned copies</li>
+              <li>All text should be visible</li>
+              <li>No torn or damaged documents</li>
+              <li>Colored scans preferred</li>
             </ul>`,
-        lastUpdated: '2025-07-01'
+        lastUpdated: '2025-07-01',
+        helpful: 45,
+        notHelpful: 3,
+        relatedQuestions: [
+          {
+            id: 'nri-documents',
+            question: 'What additional documents do NRI clients need?'
+          }
+        ]
       },
-      'check-application-status': {
-        id: 'check-application-status',
-        question: 'How can I check the status of my account application?',
-        answer: `<p>You can track your account opening application status through multiple channels:</p>
+      'eligibility-criteria': {
+        id: 'eligibility-criteria',
+        question: 'What are the eligibility criteria for opening a trading account?',
+        answer: `<p>Check if you meet the eligibility requirements for opening a Sapphire Broking account:</p>
             
-            <h3>Online Tracking</h3>
+            <h3>General Eligibility</h3>
             <ul>
-              <li>Visit the Sapphire Broking website</li>
-              <li>Go to "Track Application" section</li>
-              <li>Enter your application reference number</li>
-              <li>View real-time status updates</li>
+              <li><strong>Age:</strong> Minimum 18 years (minors need guardian)</li>
+              <li><strong>Citizenship:</strong> Indian citizen or eligible foreign national</li>
+              <li><strong>PAN Card:</strong> Valid PAN card mandatory</li>
+              <li><strong>Bank Account:</strong> Indian bank account in your name</li>
             </ul>
 
-            <h3>Mobile App</h3>
+            <h3>Resident Indians</h3>
             <ul>
-              <li>Download the Sapphire Trade app</li>
-              <li>Use the "Application Status" feature</li>
-              <li>Get push notifications for status updates</li>
+              <li>Valid Aadhaar linked to mobile number</li>
+              <li>Indian address proof</li>
+              <li>No additional restrictions</li>
             </ul>
 
-            <h3>Contact Support</h3>
+            <h3>NRI/PIO/OCI</h3>
             <ul>
-              <li>Call customer care: 1800-XXX-XXXX</li>
-              <li>Email: support@sapphirebroking.com</li>
-              <li>Live chat on website</li>
-            </ul>`,
-        lastUpdated: '2025-07-01'
-      },
-      'account-rejected-delayed': {
-        id: 'account-rejected-delayed',
-        question: 'Why was my account application rejected or delayed?',
-        answer: `<p>Account applications may be rejected or delayed due to various reasons:</p>
-            
-            <h3>Common Rejection Reasons</h3>
-            <ul>
-              <li><strong>Incomplete Documentation:</strong> Missing or unclear documents</li>
-              <li><strong>Incorrect Information:</strong> Mismatched details across documents</li>
-              <li><strong>Poor Image Quality:</strong> Blurry or illegible document scans</li>
-              <li><strong>Address Mismatch:</strong> Different addresses in PAN and Aadhaar</li>
-              <li><strong>Age Restrictions:</strong> Below 18 years of age</li>
-            </ul>
-
-            <h3>Delay Reasons</h3>
-            <ul>
-              <li>High application volumes</li>
-              <li>Additional verification required</li>
-              <li>Technical processing issues</li>
-              <li>Regulatory compliance checks</li>
-            </ul>
-
-            <h3>Next Steps</h3>
-            <p>Contact our support team with your application number for specific reasons and guidance on resubmission.</p>`,
-        lastUpdated: '2025-07-01'
-      },
-      'update-personal-details': {
-        id: 'update-personal-details',
-        question: 'How do I update my personal details (email, mobile, address)?',
-        answer: `<p>You can update your personal details through various methods:</p>
-            
-            <h3>Online Update</h3>
-            <ul>
-              <li>Login to your Sapphire account</li>
-              <li>Go to "Profile" or "Account Settings"</li>
-              <li>Select the details you want to update</li>
-              <li>Submit required documents for verification</li>
-            </ul>
-
-            <h3>Required Documents</h3>
-            <ul>
-              <li><strong>Mobile Number:</strong> OTP verification</li>
-              <li><strong>Email Address:</strong> Email verification link</li>
-              <li><strong>Address:</strong> Latest address proof document</li>
-              <li><strong>Bank Details:</strong> Bank statement or cancelled cheque</li>
-            </ul>
-
-            <h3>Processing Time</h3>
-            <p>Most updates are processed within 2-3 business days after document verification.</p>`,
-        lastUpdated: '2025-07-01'
-      },
-      'update-bank-account': {
-        id: 'update-bank-account',
-        question: 'Can I update my bank account or add a secondary account?',
-        answer: `<p>Yes, you can update your primary bank account or add secondary accounts:</p>
-            
-            <h3>Primary Bank Account Update</h3>
-            <ul>
-              <li>Submit a written request with signature</li>
-              <li>Provide new bank account proof</li>
-              <li>Complete verification process</li>
-              <li>Processing takes 5-7 business days</li>
-            </ul>
-
-            <h3>Adding Secondary Accounts</h3>
-            <ul>
-              <li>Maximum 3 bank accounts allowed</li>
-              <li>All accounts must be in your name</li>
-              <li>Submit bank statements for each account</li>
-              <li>Complete additional KYC if required</li>
-            </ul>
-
-            <h3>Required Documents</h3>
-            <ul>
-              <li>Cancelled cheque of new account</li>
-              <li>Bank statement (last 3 months)</li>
-              <li>Signed account update form</li>
-            </ul>`,
-        lastUpdated: '2025-07-01'
-      },
-      'reset-password': {
-        id: 'reset-password',
-        question: 'How do I reset my password or recover my login ID?',
-        answer: `<p>Follow these steps to reset your password or recover login credentials:</p>
-            
-            <h3>Password Reset</h3>
-            <ol>
-              <li>Go to the login page</li>
-              <li>Click "Forgot Password"</li>
-              <li>Enter your User ID or registered mobile number</li>
-              <li>Follow the OTP verification process</li>
-              <li>Create a new strong password</li>
-            </ol>
-
-            <h3>Login ID Recovery</h3>
-            <ul>
-              <li>Contact customer support with your registered mobile number</li>
-              <li>Provide PAN number for verification</li>
-              <li>Answer security questions</li>
-              <li>Receive login ID via SMS/email</li>
-            </ul>
-
-            <h3>Security Tips</h3>
-            <ul>
-              <li>Use a combination of letters, numbers, and symbols</li>
-              <li>Avoid using personal information</li>
-              <li>Change password regularly</li>
-              <li>Don't share credentials with anyone</li>
-            </ul>`,
-        lastUpdated: '2025-07-01'
-      },
-      'client-id-location': {
-        id: 'client-id-location',
-        question: 'What is my client ID and where can I find it?',
-        answer: `<p>Your client ID is a unique identifier for your trading account:</p>
-            
-            <h3>What is Client ID</h3>
-            <ul>
-              <li>Unique alphanumeric code assigned to your account</li>
-              <li>Used for all trading and account related activities</li>
-              <li>Required for customer support queries</li>
-              <li>Different from login ID or user ID</li>
-            </ul>
-
-            <h3>Where to Find Client ID</h3>
-            <ul>
-              <li><strong>Account Opening Email:</strong> Check your welcome email</li>
-              <li><strong>Trading Platform:</strong> Displayed after login</li>
-              <li><strong>Account Statements:</strong> Listed on all statements</li>
-              <li><strong>Contract Notes:</strong> Shown on trading confirmations</li>
-              <li><strong>Mobile App:</strong> Profile section</li>
-            </ul>
-
-            <h3>If You Can't Find It</h3>
-            <p>Contact customer support with your registered mobile number and PAN details for assistance.</p>`,
-        lastUpdated: '2025-07-01'
-      },
-      'close-deactivate-account': {
-        id: 'close-deactivate-account',
-        question: 'How do I close or deactivate my account?',
-        answer: `<p>Account closure requires a formal process to ensure proper settlement:</p>
-            
-            <h3>Pre-Closure Requirements</h3>
-            <ul>
-              <li>Close all open positions</li>
-              <li>Withdraw available funds</li>
-              <li>Clear any pending dues</li>
-              <li>Ensure no corporate actions are pending</li>
-            </ul>
-
-            <h3>Closure Process</h3>
-            <ol>
-              <li>Submit account closure request in writing</li>
-              <li>Fill the account closure form</li>
-              <li>Provide required documents</li>
-              <li>Pay applicable charges (if any)</li>
-              <li>Complete verification process</li>
-            </ol>
-
-            <h3>Required Documents</h3>
-            <ul>
-              <li>Signed account closure request</li>
-              <li>Copy of PAN card</li>
-              <li>Bank account details for refund</li>
-              <li>Demat account closure form (if applicable)</li>
-            </ul>
-
-            <h3>Processing Time</h3>
-            <p>Account closure typically takes 15-30 business days after all requirements are met.</p>`,
-        lastUpdated: '2025-07-01'
-      },
-      'suspicious-activity': {
-        id: 'suspicious-activity',
-        question: 'What should I do if I suspect unauthorised activity on my account?',
-        answer: `<p>Immediately take these security measures if you suspect unauthorized activity:</p>
-            
-            <h3>Immediate Actions</h3>
-            <ol>
-              <li><strong>Change Password:</strong> Reset immediately</li>
-              <li><strong>Contact Support:</strong> Call customer care right away</li>
-              <li><strong>Check Statements:</strong> Review recent transactions</li>
-              <li><strong>Block Account:</strong> Request temporary suspension</li>
-            </ol>
-
-            <h3>What to Report</h3>
-            <ul>
-              <li>Unauthorized trades or transactions</li>
-              <li>Unknown login attempts</li>
-              <li>Suspicious emails or SMS</li>
-              <li>Changes to account details you didn't make</li>
-              <li>Missing funds or securities</li>
-            </ul>
-
-            <h3>Prevention Measures</h3>
-            <ul>
-              <li>Use strong, unique passwords</li>
-              <li>Enable two-factor authentication</li>
-              <li>Never share login credentials</li>
-              <li>Regular monitoring of account statements</li>
-              <li>Use secure networks for trading</li>
-            </ul>
-
-            <h3>Emergency Contact</h3>
-            <p>24/7 Security Helpline: 1800-XXX-XXXX (Toll Free)</p>`,
-        lastUpdated: '2025-07-01'
-      }
-    },
-    'minor': {
-      'minor-account-opening': {
-        id: 'minor-account-opening',
-        question: 'How to open trading account for minor?',
-        answer: `<p>Minor trading accounts can be opened with specific requirements and limitations:</p>
-            
-            <h3>Eligibility</h3>
-            <ul>
-              <li>Age: Below 18 years</li>
-              <li>Indian resident minor</li>
-              <li>Natural guardian required</li>
-              <li>Separate account for minor</li>
-            </ul>
-
-            <h3>Required Documents</h3>
-            <ul>
-              <li><strong>Minor's Documents:</strong> Birth certificate, School ID, Aadhaar</li>
-              <li><strong>Guardian's Documents:</strong> PAN, Aadhaar, Address proof</li>
-              <li><strong>Relationship Proof:</strong> Birth certificate showing parent-child relationship</li>
-              <li><strong>Bank Account:</strong> Joint account with guardian</li>
-            </ul>
-
-            <h3>Account Features</h3>
-            <ul>
-              <li>Only delivery-based equity trading allowed</li>
-              <li>No derivatives or margin trading</li>
-              <li>Guardian approval required for all transactions</li>
-              <li>Auto-conversion to regular account at 18</li>
-            </ul>`,
-        lastUpdated: '2025-07-01'
-      }
-    },
-    'nri': {
-      'nri-account-opening': {
-        id: 'nri-account-opening',
-        question: 'How to open NRI trading account?',
-        answer: `<p>NRI (Non-Resident Indian) trading accounts have specific requirements and procedures:</p>
-            
-            <h3>Eligibility</h3>
-            <ul>
-              <li>Indian citizen residing outside India</li>
               <li>Valid Indian passport</li>
-              <li>Overseas residential status</li>
-              <li>NRE/NRO bank account in India</li>
+              <li>Overseas address proof</li>
+              <li>NRE/NRO bank account</li>
+              <li>Investment restrictions apply</li>
             </ul>
 
-            <h3>Required Documents</h3>
+            <h3>Ineligible Categories</h3>
             <ul>
-              <li><strong>Identity Proof:</strong> Indian passport with visa stamps</li>
-              <li><strong>Address Proof:</strong> Overseas utility bill/bank statement</li>
-              <li><strong>PAN Card:</strong> Valid Indian PAN</li>
-              <li><strong>Bank Proof:</strong> NRE/NRO account statement</li>
-              <li><strong>Income Proof:</strong> Salary slip or tax returns</li>
-            </ul>
-
-            <h3>Investment Restrictions</h3>
-            <ul>
-              <li>Can invest in equity and mutual funds</li>
-              <li>Limited derivatives trading</li>
-              <li>Currency trading not allowed</li>
-              <li>Repatriation limits apply</li>
+              <li>SEBI debarred entities</li>
+              <li>Willful defaulters</li>
+              <li>Court-restricted individuals</li>
             </ul>`,
-        lastUpdated: '2025-07-01'
+        lastUpdated: '2025-07-01',
+        helpful: 32,
+        notHelpful: 1
       }
     },
-    'corporate': {
-      'corporate-account-opening': {
-        id: 'corporate-account-opening',
-        question: 'How to open corporate/business trading account?',
-        answer: `<p>Corporate accounts for businesses, partnerships, and companies have specific requirements:</p>
+    'kyc-process-verification': {
+      'in-person-verification': {
+        id: 'in-person-verification',
+        question: 'What is In-Person Verification (IPV) and how to complete it?',
+        answer: `<p>In-Person Verification (IPV) is a mandatory step to verify your identity during account opening:</p>
             
-            <h3>Entity Types Supported</h3>
+            <h3>What is IPV?</h3>
             <ul>
-              <li>Private Limited Companies</li>
-              <li>Public Limited Companies</li>
-              <li>Partnership Firms</li>
-              <li>Limited Liability Partnerships (LLP)</li>
-              <li>Proprietary Concerns</li>
+              <li>SEBI mandated identity verification process</li>
+              <li>Can be done through video call or selfie</li>
+              <li>Ensures account security and compliance</li>
+              <li>One-time process during account opening</li>
             </ul>
 
-            <h3>Required Documents</h3>
+            <h3>IPV Methods</h3>
             <ul>
-              <li><strong>Company Documents:</strong> Certificate of Incorporation, MOA, AOA</li>
-              <li><strong>Authorization:</strong> Board resolution for trading</li>
-              <li><strong>Director Details:</strong> PAN, Aadhaar of all directors</li>
-              <li><strong>Bank Account:</strong> Corporate bank account proof</li>
-              <li><strong>Financial Documents:</strong> ITR, GST registration</li>
+              <li><strong>Video Selfie:</strong> Record a short video as per instructions</li>
+              <li><strong>Video Call:</strong> Live verification with support team</li>
+              <li><strong>Branch Visit:</strong> Physical verification at office</li>
             </ul>
 
-            <h3>Additional Requirements</h3>
+            <h3>IPV Requirements</h3>
             <ul>
-              <li>Minimum paid-up capital requirements</li>
-              <li>Authorized representative details</li>
-              <li>Trading limits and exposure management</li>
-              <li>Compliance with corporate governance norms</li>
+              <li>Clear lighting and stable internet</li>
+              <li>Original PAN card in hand</li>
+              <li>Clear face visibility</li>
+              <li>Speak as instructed</li>
+            </ul>
+
+            <h3>IPV Tips</h3>
+            <ul>
+              <li>Use good lighting, avoid shadows</li>
+              <li>Speak clearly and audibly</li>
+              <li>Hold documents steady</li>
+              <li>Follow all instructions carefully</li>
             </ul>`,
-        lastUpdated: '2025-07-01'
+        lastUpdated: '2025-07-01',
+        helpful: 28,
+        notHelpful: 4
       }
     },
-    'glossary': {
-      'trading-terms': {
-        id: 'trading-terms',
-        question: 'Common trading terms and definitions',
-        answer: `<p>Understanding key trading terms is essential for successful investing:</p>
+    'account-opening-methods': {
+      'online-account-opening': {
+        id: 'online-account-opening',
+        question: 'How to open account online step by step?',
+        answer: `<p>Open your Sapphire Broking account completely online in just a few minutes:</p>
             
-            <h3>Basic Terms</h3>
+            <h3>Step-by-Step Process</h3>
+            <ol>
+              <li><strong>Visit Website:</strong> Go to signup.sapphirebroking.com</li>
+              <li><strong>Mobile Verification:</strong> Enter mobile number and verify via OTP</li>
+              <li><strong>Email Verification:</strong> Provide and verify email address</li>
+              <li><strong>PAN Details:</strong> Enter PAN number and date of birth</li>
+              <li><strong>Trading Segments:</strong> Select Equity, F&O, Currency, Commodity</li>
+              <li><strong>Aadhaar Verification:</strong> Enter Aadhaar and complete OTP verification</li>
+              <li><strong>Personal Details:</strong> Fill name, address, occupation details</li>
+              <li><strong>Bank Account:</strong> Link via UPI or enter manually</li>
+              <li><strong>IPV:</strong> Complete In-Person Verification via selfie video</li>
+              <li><strong>Signature:</strong> Draw digital signature or upload image</li>
+              <li><strong>Documents:</strong> Upload additional documents if required</li>
+              <li><strong>Nominee:</strong> Add nominee details (optional)</li>
+              <li><strong>eSign:</strong> Digitally sign application using Aadhaar OTP</li>
+            </ol>
+
+            <h3>Time Required</h3>
             <ul>
-              <li><strong>Equity:</strong> Ownership shares in a company</li>
-              <li><strong>Demat:</strong> Dematerialized form of holding securities</li>
-              <li><strong>Portfolio:</strong> Collection of investments held by an investor</li>
-              <li><strong>Broker:</strong> Intermediary who executes buy/sell orders</li>
+              <li>Application: 10-15 minutes</li>
+              <li>Processing: 24-48 hours</li>
+              <li>Account activation: 1-2 business days</li>
+            </ul>`,
+        lastUpdated: '2025-07-01',
+        helpful: 67,
+        notHelpful: 2
+      }
+    },
+    'types-of-accounts': {
+      'individual-vs-joint-account': {
+        id: 'individual-vs-joint-account',
+        question: 'What is the difference between individual and joint trading accounts?',
+        answer: `<p>Choose between individual and joint accounts based on your requirements:</p>
+            
+            <h3>Individual Account</h3>
+            <ul>
+              <li><strong>Ownership:</strong> Single person ownership</li>
+              <li><strong>Operation:</strong> Only account holder can trade</li>
+              <li><strong>Taxation:</strong> All gains/losses in one person's name</li>
+              <li><strong>Nomination:</strong> Can add up to 3 nominees</li>
+              <li><strong>Documents:</strong> Only account holder's documents needed</li>
             </ul>
 
-            <h3>Trading Terms</h3>
+            <h3>Joint Account</h3>
             <ul>
-              <li><strong>Bull Market:</strong> Rising market trend</li>
-              <li><strong>Bear Market:</strong> Declining market trend</li>
-              <li><strong>Bid Price:</strong> Highest price buyer is willing to pay</li>
-              <li><strong>Ask Price:</strong> Lowest price seller is willing to accept</li>
-              <li><strong>Volume:</strong> Number of shares traded</li>
+              <li><strong>Ownership:</strong> Multiple persons (usually 2-3)</li>
+              <li><strong>Operation:</strong> Either/Survivor or Joint operations</li>
+              <li><strong>Taxation:</strong> Income distributed as per holding ratio</li>
+              <li><strong>Documents:</strong> All joint holders' documents required</li>
+              <li><strong>Signatures:</strong> As per mode of operation</li>
             </ul>
 
-            <h3>Order Types</h3>
+            <h3>Joint Account Types</h3>
             <ul>
-              <li><strong>Market Order:</strong> Buy/sell at current market price</li>
-              <li><strong>Limit Order:</strong> Buy/sell at specific price or better</li>
-              <li><strong>Stop Loss:</strong> Order to limit losses</li>
-              <li><strong>Day Order:</strong> Valid for current trading day only</li>
+              <li><strong>Either or Survivor:</strong> Any holder can operate independently</li>
+              <li><strong>Joint:</strong> All holders must sign for transactions</li>
+              <li><strong>Former or Survivor:</strong> First holder operates, others on death</li>
             </ul>`,
         lastUpdated: '2025-07-01'
       }
     }
   },
-  'funds': {
-    'add-money': {
+  'fund-transfer-withdrawals': {
+    'adding-funds': {
       'payment-methods': {
         id: 'payment-methods',
         question: 'What payment methods are available to add money?',
-        answer: `<p>Sapphire Broking offers multiple convenient payment methods to add funds to your trading account. Choose the option that works best for you:</p>
+        answer: `<p>Sapphire Broking offers multiple convenient payment methods to add funds to your trading account:</p>
             
             <h3>Instant Methods</h3>
             <p><em>Funds reflect instantly</em></p>
             <ul>
-              <li><strong>UPI:</strong> Google Pay, PhonePe, Paytm, etc.</li>
-              <li><strong>Net Banking:</strong> All major banks supported</li>
-              <li><strong>Debit Card:</strong> Visa, Mastercard, RuPay</li>
+              <li><strong>UPI:</strong> Google Pay, PhonePe, Paytm, BHIM, bank UPI apps</li>
+              <li><strong>Net Banking:</strong> All major banks (SBI, HDFC, ICICI, Axis, etc.)</li>
+              <li><strong>Debit Card:</strong> Visa, Mastercard, RuPay cards</li>
               <li><strong>IMPS:</strong> Immediate Payment Service</li>
             </ul>
 
@@ -467,18 +230,19 @@ export const questions: TopicQuestions = {
             <p><em>May take 2-24 hours</em></p>
             <ul>
               <li><strong>NEFT:</strong> National Electronic Funds Transfer</li>
-              <li><strong>RTGS:</strong> Real Time Gross Settlement</li>
+              <li><strong>RTGS:</strong> Real Time Gross Settlement (₹2 lakh+)</li>
+              <li><strong>Bank Transfer:</strong> Direct bank to bank transfer</li>
               <li><strong>Cheque Deposit:</strong> At branch locations</li>
-              <li><strong>Bank Transfer:</strong> Direct bank to bank</li>
             </ul>
 
             <h3>Payment Limits</h3>
             <ul>
               <li><strong>UPI:</strong> Min: ₹1 | Max: ₹1,00,000/day</li>
               <li><strong>Net Banking:</strong> Min: ₹1 | Max: ₹10,00,000/day</li>
+              <li><strong>Debit Card:</strong> Min: ₹1 | Max: ₹2,00,000/day</li>
               <li><strong>NEFT/RTGS:</strong> Min: ₹1 | No upper limit</li>
             </ul>`,
-        lastUpdated: '2024-12-12',
+        lastUpdated: '2025-07-01',
         helpful: 38,
         notHelpful: 2,
         relatedQuestions: [
@@ -497,47 +261,242 @@ export const questions: TopicQuestions = {
             <p>Fastest and most convenient method:</p>
             <ul>
               <li>Open any UPI app (GPay, PhonePe, Paytm, etc.)</li>
-              <li>Use the VPA provided in your account</li>
+              <li>Use the VPA provided in your account dashboard</li>
               <li>Funds reflect within seconds</li>
-              <li>Available 24/7</li>
+              <li>Available 24/7, including weekends</li>
+              <li>No additional charges</li>
             </ul>
 
-            <h3>Net Banking</h3>
+            <h3>Net Banking with IMPS</h3>
             <ul>
-              <li>Login to your bank's net banking</li>
+              <li>Login to your bank's net banking portal</li>
               <li>Add Sapphire as beneficiary</li>
               <li>Transfer using IMPS for instant credit</li>
+              <li>Available 24x7</li>
             </ul>
 
             <h3>Debit Card</h3>
             <ul>
-              <li>Use the 'Add Money' option in your account</li>
-              <li>Enter debit card details</li>
+              <li>Use the 'Add Money' option in your trading platform</li>
+              <li>Enter debit card details securely</li>
               <li>Complete OTP verification</li>
               <li>Funds reflect immediately</li>
+            </ul>
+
+            <h3>Important Notes</h3>
+            <ul>
+              <li>Only use your registered bank account</li>
+              <li>Third-party payments not allowed</li>
+              <li>Keep payment receipts for reference</li>
             </ul>`,
-        lastUpdated: '2024-12-12'
+        lastUpdated: '2025-07-01',
+        helpful: 45,
+        notHelpful: 1
+      }
+    },
+    'withdrawal-of-funds': {
+      'withdrawal-process': {
+        id: 'withdrawal-process',
+        question: 'How to withdraw money from my trading account?',
+        answer: `<p>Withdrawing funds from your Sapphire Broking account is simple and secure:</p>
+            
+            <h3>Withdrawal Methods</h3>
+            <ul>
+              <li><strong>Online Withdrawal:</strong> Through trading platform/app</li>
+              <li><strong>UPI:</strong> Instant withdrawal to registered UPI ID</li>
+              <li><strong>Bank Transfer:</strong> NEFT/IMPS to registered bank account</li>
+            </ul>
+
+            <h3>Step-by-Step Process</h3>
+            <ol>
+              <li>Login to your trading account</li>
+              <li>Go to 'Funds' or 'Withdraw Money' section</li>
+              <li>Enter withdrawal amount</li>
+              <li>Select withdrawal method (UPI/Bank Transfer)</li>
+              <li>Verify with OTP or trading password</li>
+              <li>Submit withdrawal request</li>
+            </ol>
+
+            <h3>Processing Time</h3>
+            <ul>
+              <li><strong>UPI:</strong> Instant (24x7)</li>
+              <li><strong>IMPS:</strong> Instant (24x7)</li>
+              <li><strong>NEFT:</strong> 2-3 hours (banking hours)</li>
+              <li><strong>RTGS:</strong> 30 minutes (banking hours)</li>
+            </ul>
+
+            <h3>Withdrawal Limits</h3>
+            <ul>
+              <li><strong>UPI:</strong> ₹1,00,000 per day</li>
+              <li><strong>Bank Transfer:</strong> No limit (subject to available balance)</li>
+              <li><strong>Minimum:</strong> ₹1</li>
+            </ul>`,
+        lastUpdated: '2025-07-01',
+        helpful: 52,
+        notHelpful: 3
+      }
+    }
+  },
+  'trading-orders': {
+    'order-types': {
+      'market-vs-limit-orders': {
+        id: 'market-vs-limit-orders',
+        question: 'What is the difference between Market and Limit orders?',
+        answer: `<p>Understanding order types is crucial for effective trading. Here's the difference:</p>
+            
+            <h3>Market Order</h3>
+            <ul>
+              <li><strong>Execution:</strong> Executes immediately at current market price</li>
+              <li><strong>Price:</strong> No price specification needed</li>
+              <li><strong>Guarantee:</strong> Execution guaranteed, price not guaranteed</li>
+              <li><strong>Best for:</strong> Quick execution when price is less important</li>
+              <li><strong>Risk:</strong> Price slippage in volatile markets</li>
+            </ul>
+
+            <h3>Limit Order</h3>
+            <ul>
+              <li><strong>Execution:</strong> Executes only at specified price or better</li>
+              <li><strong>Price:</strong> You set the exact price</li>
+              <li><strong>Guarantee:</strong> Price guaranteed, execution not guaranteed</li>
+              <li><strong>Best for:</strong> Price-sensitive transactions</li>
+              <li><strong>Risk:</strong> May not execute if price not reached</li>
+            </ul>
+
+            <h3>Examples</h3>
+            <ul>
+              <li><strong>Market Buy:</strong> "Buy 100 shares of XYZ at current market price"</li>
+              <li><strong>Limit Buy:</strong> "Buy 100 shares of XYZ at ₹500 or lower"</li>
+              <li><strong>Limit Sell:</strong> "Sell 100 shares of XYZ at ₹550 or higher"</li>
+            </ul>
+
+            <h3>When to Use</h3>
+            <ul>
+              <li><strong>Market Order:</strong> High liquidity stocks, urgent trades</li>
+              <li><strong>Limit Order:</strong> Illiquid stocks, specific price targets</li>
+            </ul>`,
+        lastUpdated: '2025-07-01',
+        helpful: 78,
+        notHelpful: 5
+      }
+    },
+    'order-placement-process': {
+      'place-buy-sell-order': {
+        id: 'place-buy-sell-order',
+        question: 'How to place buy and sell orders?',
+        answer: `<p>Placing orders on Sapphire Broking platform is straightforward. Follow these steps:</p>
+            
+            <h3>Placing a Buy Order</h3>
+            <ol>
+              <li><strong>Search Stock:</strong> Enter stock name or symbol</li>
+              <li><strong>Select 'Buy':</strong> Click on the Buy button</li>
+              <li><strong>Order Details:</strong>
+                <ul>
+                  <li>Quantity: Number of shares</li>
+                  <li>Price: Market/Limit price</li>
+                  <li>Product: Intraday/Delivery/Cover Order</li>
+                  <li>Validity: Day/IOC/GTD</li>
+                </ul>
+              </li>
+              <li><strong>Review:</strong> Check all details carefully</li>
+              <li><strong>Submit:</strong> Click 'Buy' to place order</li>
+            </ol>
+
+            <h3>Placing a Sell Order</h3>
+            <ol>
+              <li><strong>From Holdings:</strong> Select stock from your holdings</li>
+              <li><strong>Or Search:</strong> Search for the stock symbol</li>
+              <li><strong>Select 'Sell':</strong> Click on the Sell button</li>
+              <li><strong>Enter Quantity:</strong> Maximum available shares shown</li>
+              <li><strong>Set Price:</strong> Market or your desired limit price</li>
+              <li><strong>Submit:</strong> Review and confirm the order</li>
+            </ol>
+
+            <h3>Order Confirmation</h3>
+            <ul>
+              <li>Order acknowledgment with order number</li>
+              <li>SMS/Email confirmation</li>
+              <li>Real-time order status in platform</li>
+              <li>Contract note after execution</li>
+            </ul>
+
+            <h3>Important Tips</h3>
+            <ul>
+              <li>Double-check quantity and price</li>
+              <li>Ensure sufficient funds/shares</li>
+              <li>Monitor order status</li>
+              <li>Cancel/modify if needed before execution</li>
+            </ul>`,
+        lastUpdated: '2025-07-01',
+        helpful: 89,
+        notHelpful: 4
+      }
+    }
+  },
+  'technical-platform-issues': {
+    'login-access-issues': {
+      'forgot-password': {
+        id: 'forgot-password',
+        question: 'How to reset forgotten password?',
+        answer: `<p>If you've forgotten your trading account password, follow these steps to reset it:</p>
+            
+            <h3>Online Password Reset</h3>
+            <ol>
+              <li><strong>Visit Login Page:</strong> Go to the official login page</li>
+              <li><strong>Click 'Forgot Password':</strong> Look for the link below login form</li>
+              <li><strong>Enter Details:</strong> Provide User ID or registered mobile number</li>
+              <li><strong>Verification:</strong> Complete OTP verification via SMS</li>
+              <li><strong>New Password:</strong> Create a strong new password</li>
+              <li><strong>Confirm:</strong> Re-enter password to confirm</li>
+            </ol>
+
+            <h3>Alternative Methods</h3>
+            <ul>
+              <li><strong>Mobile App:</strong> Use 'Forgot Password' in mobile app</li>
+              <li><strong>Customer Support:</strong> Call helpline for assistance</li>
+              <li><strong>Email Support:</strong> Send request to support email</li>
+            </ul>
+
+            <h3>Password Requirements</h3>
+            <ul>
+              <li>Minimum 8 characters</li>
+              <li>At least one uppercase letter</li>
+              <li>At least one lowercase letter</li>
+              <li>At least one number</li>
+              <li>At least one special character</li>
+            </ul>
+
+            <h3>Security Tips</h3>
+            <ul>
+              <li>Don't use personal information</li>
+              <li>Change password regularly</li>
+              <li>Don't share with anyone</li>
+              <li>Use unique password for trading account</li>
+            </ul>`,
+        lastUpdated: '2025-07-01',
+        helpful: 67,
+        notHelpful: 3
       }
     }
   }
 };
 
-export const getQuestionsByDoubt = (topicId: string, doubtId: string): Question[] => {
+// Helper functions to work with the new structure
+export const getQuestionsBySubcategory = (topicId: string, subcategoryId: string): Question[] => {
   const topicQuestions = questions[topicId];
-  const doubtQuestions = topicQuestions?.[doubtId];
-  return doubtQuestions ? Object.values(doubtQuestions) : [];
+  const subcategoryQuestions = topicQuestions?.[subcategoryId];
+  return subcategoryQuestions ? Object.values(subcategoryQuestions) : [];
 };
 
-export const getQuestion = (topicId: string, doubtId: string, questionId: string): Question | undefined => {
-  return questions[topicId]?.[doubtId]?.[questionId];
+export const getQuestion = (topicId: string, subcategoryId: string, questionId: string): Question | undefined => {
+  return questions[topicId]?.[subcategoryId]?.[questionId];
 };
 
 export const getAllQuestions = (): Question[] => {
   const allQuestions: Question[] = [];
   
   Object.values(questions).forEach(topicQuestions => {
-    Object.values(topicQuestions).forEach(doubtQuestions => {
-      Object.values(doubtQuestions).forEach(question => {
+    Object.values(topicQuestions).forEach(subcategoryQuestions => {
+      Object.values(subcategoryQuestions).forEach(question => {
         allQuestions.push(question);
       });
     });
@@ -554,4 +513,24 @@ export const searchQuestions = (searchTerm: string): Question[] => {
     question.question.toLowerCase().includes(lowercaseSearch) ||
     question.answer.toLowerCase().includes(lowercaseSearch)
   );
+};
+
+export const getQuestionsByTopic = (topicId: string): Question[] => {
+  const topicQuestions = questions[topicId];
+  const allTopicQuestions: Question[] = [];
+  
+  if (topicQuestions) {
+    Object.values(topicQuestions).forEach(subcategoryQuestions => {
+      Object.values(subcategoryQuestions).forEach(question => {
+        allTopicQuestions.push(question);
+      });
+    });
+  }
+  
+  return allTopicQuestions;
+};
+
+export const getRelatedQuestions = (topicId: string, subcategoryId: string, currentQuestionId: string): Question[] => {
+  const subcategoryQuestions = getQuestionsBySubcategory(topicId, subcategoryId);
+  return subcategoryQuestions.filter(q => q.id !== currentQuestionId).slice(0, 3);
 };
