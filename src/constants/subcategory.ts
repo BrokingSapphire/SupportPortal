@@ -1,7 +1,6 @@
 export interface Doubt {
   id: string;
   title: string;
-  description: string;
 }
 
 export interface TopicDoubts {
@@ -12,69 +11,57 @@ export const doubts: TopicDoubts = {
   'account-opening': [
     {
       id: 'resident-individual',
-      title: 'Resident Individual',
-      description: 'Account opening for Indian residents'
+      title: 'Resident Individual'
     },
     {
       id: 'nri',
-      title: 'NRI Account',
-      description: 'Non-Resident Indian account opening'
+      title: 'NRI Account'
     },
     {
       id: 'corporate',
-      title: 'Corporate Account',
-      description: 'Business and corporate account opening'
+      title: 'Corporate Account'
     }
   ],
   'funds': [
     {
       id: 'add-money',
-      title: 'Add Money',
-      description: 'Adding funds to your trading account'
+      title: 'Add Money'
     },
     {
       id: 'withdraw-money',
-      title: 'Withdraw Money',
-      description: 'Withdrawing funds from your account'
+      title: 'Withdraw Money'
     },
     {
       id: 'payment-issues',
-      title: 'Payment Issues',
-      description: 'Payment failures and related problems'
+      title: 'Payment Issues'
     }
   ],
   'trading': [
     {
       id: 'equity',
-      title: 'Equity Trading',
-      description: 'Stock trading related queries'
+      title: 'Equity Trading'
     },
     {
       id: 'fno',
-      title: 'F&O Trading',
-      description: 'Futures and Options trading'
+      title: 'F&O Trading'
     },
     {
       id: 'currency',
-      title: 'Currency Trading',
-      description: 'Currency derivatives trading'
+      title: 'Currency Trading'
     }
   ],
   'technical': [
     {
       id: 'app-issues',
-      title: 'App Issues',
-      description: 'Mobile app related problems'
+      title: 'App Issues'
     },
     {
       id: 'login-issues',
-      title: 'Login Issues',
-      description: 'Login and authentication problems'
+      title: 'Login Issues'
     },
     {
       id: 'platform-issues',
-      title: 'Platform Issues',
-      description: 'Web platform and technical issues'
+      title: 'Platform Issues'
     }
   ]
 };
@@ -92,3 +79,4 @@ export const getDoubtTitle = (topicId: string, doubtId: string): string => {
   const doubt = getDoubtById(topicId, doubtId);
   return doubt ? doubt.title : doubtId;
 };
+

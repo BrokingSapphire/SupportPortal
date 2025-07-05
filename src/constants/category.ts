@@ -1,29 +1,24 @@
 export interface Topic {
   id: string;
   title: string;
-  description: string;
 }
 
 export const topics: Topic[] = [
   {
     id: 'account-opening',
-    title: 'Account Opening',
-    description: 'Everything about opening and setting up your trading account'
+    title: 'Account Opening'
   },
   {
     id: 'funds',
-    title: 'Funds & Payments',
-    description: 'Managing funds, adding money, and payment methods'
+    title: 'Funds & Payments'
   },
   {
     id: 'trading',
-    title: 'Trading',
-    description: 'Trading related queries and support'
+    title: 'Trading'
   },
   {
     id: 'technical',
-    title: 'Technical Issues',
-    description: 'Platform issues, app problems, and technical support'
+    title: 'Technical Issues'
   }
 ];
 
