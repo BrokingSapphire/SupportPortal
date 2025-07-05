@@ -10,366 +10,576 @@ export interface TopicDoubts {
 export const doubts: TopicDoubts = {
   'account-opening-kyc': [
     {
-      id: 'resident-individual',
-      title: 'Resident Individual'
+      id: 'documents-eligibility',
+      title: 'Documents & Eligibility'
     },
     {
-      id: 'nri-account',
-      title: 'NRI Account'
+      id: 'kyc-process-verification',
+      title: 'KYC Process & Verification'
     },
     {
-      id: 'corporate-account',
-      title: 'Corporate Account'
+      id: 'account-opening-methods',
+      title: 'Account Opening Methods'
     },
     {
-      id: 'huf-account',
-      title: 'HUF Account'
+      id: 'types-of-accounts',
+      title: 'Types of Accounts'
     },
     {
-      id: 'kyc-documents',
-      title: 'KYC Documents'
+      id: 'kyc-update-re-kyc',
+      title: 'KYC Update & Re-KYC'
     },
     {
-      id: 'account-verification',
-      title: 'Account Verification'
+      id: 'account-opening-charges',
+      title: 'Account Opening Charges'
+    },
+    {
+      id: 'pan-aadhaar-esign-related',
+      title: 'PAN, Aadhaar & eSign Related'
+    },
+    {
+      id: 'status-tracking-timelines',
+      title: 'Status Tracking & Timelines'
+    },
+    {
+      id: 'special-account-types-poa',
+      title: 'Special Account Types & POA'
+    },
+    {
+      id: 'errors-rejections-troubleshooting',
+      title: 'Errors, Rejections & Troubleshooting'
+    },
+    {
+      id: 'exchange-segment-activation',
+      title: 'Exchange Segment Activation'
     }
   ],
-  'fund-transfer-withdrawals': [
+    'fund-transfer-withdrawals': [
     {
-      id: 'add-money',
-      title: 'Add Money'
+      id: 'adding-funds',
+      title: 'Adding Funds'
     },
     {
-      id: 'withdraw-money',
-      title: 'Withdraw Money'
+      id: 'withdrawal-of-funds',
+      title: 'Withdrawal of Funds'
     },
     {
-      id: 'payment-gateway-issues',
-      title: 'Payment Gateway Issues'
+      id: 'bank-account-management',
+      title: 'Bank Account Management'
     },
     {
-      id: 'bank-transfer',
-      title: 'Bank Transfer'
+      id: 'upi-specific-issues',
+      title: 'UPI Specific Issues'
     },
     {
-      id: 'upi-payments',
-      title: 'UPI Payments'
+      id: 'fund-transfer-charges-limits',
+      title: 'Fund Transfer Charges & Limits'
     },
     {
-      id: 'withdrawal-limits',
-      title: 'Withdrawal Limits'
+      id: 'transfer-delays-failures',
+      title: 'Transfer Delays & Failures'
+    },
+    {
+      id: 'ledger-balance-limits',
+      title: 'Ledger, Balance & Limits'
+    },
+    {
+      id: 'bank-mandate-autopay',
+      title: 'Bank Mandate & AutoPay'
+    },
+    {
+      id: 'transaction-reports-statements',
+      title: 'Transaction Reports & Statements'
+    },
+    {
+      id: 'nri-nro-nre-fund-handling',
+      title: 'NRI/NRO/NRE Fund Handling'
     }
   ],
   'trading-orders': [
-    {
-      id: 'equity-trading',
-      title: 'Equity Trading'
-    },
-    {
-      id: 'fno-trading',
-      title: 'F&O Trading'
-    },
-    {
-      id: 'currency-trading',
-      title: 'Currency Trading'
-    },
-    {
-      id: 'commodity-trading',
-      title: 'Commodity Trading'
-    },
     {
       id: 'order-types',
       title: 'Order Types'
     },
     {
-      id: 'order-modifications',
-      title: 'Order Modifications'
+      id: 'order-placement-process',
+      title: 'Order Placement Process'
+    },
+    {
+      id: 'order-rejections-errors',
+      title: 'Order Rejections & Errors'
+    },
+    {
+      id: 'intraday-vs-delivery',
+      title: 'Intraday vs Delivery'
+    },
+    {
+      id: 'order-execution-trade-status',
+      title: 'Order Execution & Trade Status'
+    },
+    {
+      id: 'exchange-segment-specific',
+      title: 'Exchange Segment Specific'
+    },
+    {
+      id: 'charges-on-trades',
+      title: 'Charges on Trades'
+    },
+    {
+      id: 'advanced-trading-tools',
+      title: 'Advanced Trading Tools'
+    },
+    {
+      id: 'trading-timings-holidays',
+      title: 'Trading Timings & Holidays'
+    },
+    {
+      id: 'position-holdings-related',
+      title: 'Position & Holdings Related'
+    },
+    {
+      id: 'corporate-action-adjustments',
+      title: 'Corporate Action Adjustments'
+    },
+    {
+      id: 'miscellaneous-scenarios',
+      title: 'Miscellaneous Scenarios'
     }
   ],
   'pledge-margin-collateral': [
     {
-      id: 'pledge-shares',
-      title: 'Pledge Shares'
+      id: 'pledging-of-shares',
+      title: 'Pledging of Shares'
     },
     {
-      id: 'unpledge-shares',
-      title: 'Unpledge Shares'
+      id: 'unpledging-of-shares',
+      title: 'Unpledging of Shares'
+    },
+    {
+      id: 'collateral-margin',
+      title: 'Collateral Margin'
     },
     {
       id: 'margin-requirements',
       title: 'Margin Requirements'
     },
     {
-      id: 'collateral-management',
-      title: 'Collateral Management'
+      id: 'margin-shortfall-penalty',
+      title: 'Margin Shortfall & Penalty'
     },
     {
-      id: 'margin-calculator',
-      title: 'Margin Calculator'
+      id: 'margin-utilization-availability',
+      title: 'Margin Utilization & Availability'
     },
     {
-      id: 'haircut-values',
-      title: 'Haircut Values'
+      id: 'pledge-status-reporting',
+      title: 'Pledge Status & Reporting'
+    },
+    {
+      id: 'liquid-funds-other-collateral',
+      title: 'Liquid Funds & Other Collateral'
+    },
+    {
+      id: 'margin-trading-facility-mtf',
+      title: 'Margin Trading Facility (MTF)'
+    },
+    {
+      id: 'regulatory-guidelines',
+      title: 'Regulatory Guidelines'
+    },
+    {
+      id: 'troubleshooting-errors',
+      title: 'Troubleshooting & Errors'
     }
   ],
-  'reports-statements': [
+    'reports-statements': [
     {
       id: 'contract-notes',
       title: 'Contract Notes'
     },
     {
-      id: 'ledger-statements',
-      title: 'Ledger Statements'
+      id: 'ledger-reports',
+      title: 'Ledger Reports'
     },
     {
-      id: 'pnl-reports',
-      title: 'P&L Reports'
+      id: 'profit-loss-reports',
+      title: 'Profit & Loss Reports'
     },
     {
-      id: 'tax-reports',
-      title: 'Tax Reports'
+      id: 'holdings-positions-reports',
+      title: 'Holdings & Positions Reports'
     },
     {
-      id: 'holding-statements',
-      title: 'Holding Statements'
+      id: 'tax-reports-statements',
+      title: 'Tax Reports & Statements'
     },
     {
-      id: 'download-reports',
-      title: 'Download Reports'
+      id: 'transaction-reports',
+      title: 'Transaction Reports'
+    },
+    {
+      id: 'margin-reports',
+      title: 'Margin Reports'
+    },
+    {
+      id: 'dp-holdings-cdsl-reports',
+      title: 'DP Holdings & CDSL Reports'
+    },
+    {
+      id: 'mutual-fund-statements',
+      title: 'Mutual Fund Statements'
+    },
+    {
+      id: 'statement-delivery-issues',
+      title: 'Statement Delivery Issues'
     }
   ],
   'ipos-buybacks-corporate-actions': [
     {
-      id: 'ipo-applications',
-      title: 'IPO Applications'
+      id: 'ipo-application-process',
+      title: 'IPO Application Process'
     },
     {
-      id: 'ipo-allotment',
-      title: 'IPO Allotment'
+      id: 'ipo-allotment-refunds',
+      title: 'IPO Allotment & Refunds'
     },
     {
-      id: 'buyback-applications',
-      title: 'Buyback Applications'
+      id: 'sme-mainboard-ipo-differences',
+      title: 'SME & Mainboard IPO Differences'
     },
     {
-      id: 'rights-issue',
-      title: 'Rights Issue'
+      id: 'buybacks',
+      title: 'Buybacks'
     },
     {
-      id: 'bonus-shares',
-      title: 'Bonus Shares'
+      id: 'delistings-open-offers',
+      title: 'Delistings & Open Offers'
     },
     {
-      id: 'dividend-updates',
-      title: 'Dividend Updates'
+      id: 'bonus-split-rights-issues',
+      title: 'Bonus, Split & Rights Issues'
+    },
+    {
+      id: 'dividend-related-queries',
+      title: 'Dividend Related Queries'
+    },
+    {
+      id: 'corporate-action-adjustments',
+      title: 'Corporate Action Adjustments'
+    },
+    {
+      id: 'reports-statements',
+      title: 'Reports & Statements'
+    },
+    {
+      id: 'common-errors-troubleshooting',
+      title: 'Common Errors & Troubleshooting'
     }
   ],
   'technical-platform-issues': [
     {
-      id: 'app-issues',
-      title: 'App Issues'
+      id: 'login-access-issues',
+      title: 'Login & Access Issues'
     },
     {
-      id: 'login-issues',
-      title: 'Login Issues'
+      id: 'app-website-not-working',
+      title: 'App / Website Not Working'
     },
     {
-      id: 'platform-issues',
-      title: 'Platform Issues'
+      id: 'slow-performance-lag',
+      title: 'Slow Performance / Lag'
     },
     {
-      id: 'chart-issues',
-      title: 'Chart Issues'
+      id: 'order-placement-errors',
+      title: 'Order Placement Errors'
     },
     {
-      id: 'order-placement-issues',
-      title: 'Order Placement Issues'
+      id: 'charting-issues',
+      title: 'Charting Issues'
     },
     {
-      id: 'server-downtime',
-      title: 'Server Downtime'
+      id: 'watchlist-portfolio-sync',
+      title: 'Watchlist / Portfolio Sync'
+    },
+    {
+      id: 'notification-alerts',
+      title: 'Notification & Alerts'
+    },
+    {
+      id: 'account-settings-ui-errors',
+      title: 'Account Settings & UI Errors'
+    },
+    {
+      id: 'device-os-browser-compatibility',
+      title: 'Device, OS & Browser Compatibility'
+    },
+    {
+      id: 'api-integration-errors',
+      title: 'API & Integration Errors'
+    },
+    {
+      id: 'maintenance-downtime-outages',
+      title: 'Maintenance, Downtime & Outages'
+    },
+    {
+      id: 'troubleshooting-escalation',
+      title: 'Troubleshooting & Escalation'
     }
   ],
   'api-developer-access': [
     {
-      id: 'api-documentation',
-      title: 'API Documentation'
+      id: 'getting-started-with-apis',
+      title: 'Getting Started with APIs'
     },
     {
-      id: 'api-keys',
-      title: 'API Keys'
+      id: 'api-key-authentication',
+      title: 'API Key & Authentication'
     },
     {
-      id: 'api-integration',
-      title: 'API Integration'
+      id: 'api-documentation-sdks',
+      title: 'API Documentation & SDKs'
     },
     {
-      id: 'api-limits',
-      title: 'API Limits'
+      id: 'market-data-apis',
+      title: 'Market Data APIs'
     },
     {
-      id: 'webhooks',
-      title: 'Webhooks'
+      id: 'order-management-apis',
+      title: 'Order Management APIs'
     },
     {
-      id: 'developer-support',
-      title: 'Developer Support'
+      id: 'portfolio-holdings-apis',
+      title: 'Portfolio & Holdings APIs'
+    },
+    {
+      id: 'funds-ledger-apis',
+      title: 'Funds & Ledger APIs'
+    },
+    {
+      id: 'error-codes-troubleshooting',
+      title: 'Error Codes & Troubleshooting'
+    },
+    {
+      id: 'rate-limits-throttling',
+      title: 'Rate Limits & Throttling'
+    },
+    {
+      id: 'algo-trading-guidelines',
+      title: 'Algo Trading Guidelines'
+    },
+    {
+      id: 'support-feedback-reporting-issues',
+      title: 'Support, Feedback & Reporting Issues'
+    },
+    {
+      id: 'api-versioning-deprecation',
+      title: 'API Versioning & Deprecation'
     }
   ],
   'regulatory-disclosures': [
     {
-      id: 'sebi-guidelines',
-      title: 'SEBI Guidelines'
+      id: 'sebi-mandated-disclosures',
+      title: 'SEBI Mandated Disclosures'
     },
     {
-      id: 'risk-disclosures',
-      title: 'Risk Disclosures'
+      id: 'exchange-membership-information',
+      title: 'Exchange Membership Information'
     },
     {
-      id: 'compliance-requirements',
-      title: 'Compliance Requirements'
+      id: 'investor-grievance-handling',
+      title: 'Investor Grievance Handling'
     },
     {
-      id: 'regulatory-updates',
-      title: 'Regulatory Updates'
+      id: 'brokerage-charges-disclosures',
+      title: 'Brokerage & Charges Disclosures'
     },
     {
-      id: 'grievance-redressal',
-      title: 'Grievance Redressal'
+      id: 'policies-procedures',
+      title: 'Policies & Procedures'
     },
     {
-      id: 'investor-protection',
-      title: 'Investor Protection'
+      id: 'client-communications-recordings',
+      title: 'Client Communications & Recordings'
+    },
+    {
+      id: 'statutory-disclosures',
+      title: 'Statutory Disclosures'
+    },
+    {
+      id: 'cybersecurity-data-privacy-disclosures',
+      title: 'Cybersecurity & Data Privacy Disclosures'
+    },
+    {
+      id: 'investor-awareness-education',
+      title: 'Investor Awareness & Education'
+    },
+    {
+      id: 'periodic-regulatory-updates',
+      title: 'Periodic Regulatory Updates'
     }
   ],
   'sub-broker-franchise-help': [
     {
-      id: 'become-sub-broker',
-      title: 'Become Sub-Broker'
+      id: 'partner-onboarding-process',
+      title: 'Partner Onboarding Process'
     },
     {
-      id: 'franchise-requirements',
-      title: 'Franchise Requirements'
+      id: 'revenue-sharing-payouts',
+      title: 'Revenue Sharing & Payouts'
     },
     {
-      id: 'commission-structure',
-      title: 'Commission Structure'
+      id: 'client-onboarding-for-partners',
+      title: 'Client Onboarding for Partners'
     },
     {
-      id: 'client-acquisition',
-      title: 'Client Acquisition'
+      id: 'partner-dashboard-access',
+      title: 'Partner Dashboard & Access'
     },
     {
-      id: 'business-support',
-      title: 'Business Support'
+      id: 'marketing-branding-support',
+      title: 'Marketing & Branding Support'
     },
     {
-      id: 'training-programs',
-      title: 'Training Programs'
+      id: 'training-certification',
+      title: 'Training & Certification'
+    },
+    {
+      id: 'compliance-regulatory-requirements',
+      title: 'Compliance & Regulatory Requirements'
+    },
+    {
+      id: 'tools-tech-support-for-partners',
+      title: 'Tools & Tech Support for Partners'
+    },
+    {
+      id: 'support-escalation-matrix',
+      title: 'Support & Escalation Matrix'
+    },
+    {
+      id: 'performance-metrics-incentives',
+      title: 'Performance Metrics & Incentives'
     }
   ],
   'account-reactivation-closure': [
     {
-      id: 'reactivate-account',
-      title: 'Reactivate Account'
+      id: 'dormant-inactive-account',
+      title: 'Dormant / Inactive Account'
     },
     {
-      id: 'dormant-account',
-      title: 'Dormant Account'
+      id: 'account-reactivation-process',
+      title: 'Account Reactivation Process'
     },
     {
-      id: 'close-account',
-      title: 'Close Account'
+      id: 're-kyc-compliance-requirements',
+      title: 'Re-KYC and Compliance Requirements'
+    },
+    {
+      id: 'trading-segment-reactivation',
+      title: 'Trading Segment Reactivation'
     },
     {
       id: 'account-closure-process',
       title: 'Account Closure Process'
     },
     {
-      id: 'transfer-holdings',
-      title: 'Transfer Holdings'
+      id: 'charges-refunds',
+      title: 'Charges & Refunds'
     },
     {
-      id: 'final-settlement',
-      title: 'Final Settlement'
+      id: 'closure-due-compliance-violation',
+      title: 'Closure Due to Compliance/Violation'
+    },
+    {
+      id: 'partial-deactivation-segment-deletion',
+      title: 'Partial Deactivation / Segment Deletion'
+    },
+    {
+      id: 'support-follow-up',
+      title: 'Support & Follow-up'
     }
   ],
   'segment-specific-help': [
     {
-      id: 'nse-equity',
-      title: 'NSE Equity'
+      id: 'segment-eligibility-activation',
+      title: 'Segment Eligibility & Activation'
     },
     {
-      id: 'bse-equity',
-      title: 'BSE Equity'
+      id: 'trading-timings-sessions',
+      title: 'Trading Timings & Sessions'
     },
     {
-      id: 'nse-fno',
-      title: 'NSE F&O'
+      id: 'order-types-product-codes',
+      title: 'Order Types & Product Codes'
     },
     {
-      id: 'mcx-commodity',
-      title: 'MCX Commodity'
+      id: 'segment-specific-charges-taxes',
+      title: 'Segment-Specific Charges & Taxes'
     },
     {
-      id: 'ncdex-commodity',
-      title: 'NCDEX Commodity'
+      id: 'scrip-contract-issues',
+      title: 'Scrip/Contract Issues'
     },
     {
-      id: 'currency-derivatives',
-      title: 'Currency Derivatives'
+      id: 'corporate-actions-per-segment',
+      title: 'Corporate Actions per Segment'
+    },
+    {
+      id: 'settlement-margin-rules',
+      title: 'Settlement & Margin Rules'
+    },
+    {
+      id: 'auction-penalties-close-out',
+      title: 'Auction Penalties & Close-out'
+    },
+    {
+      id: 'segment-specific-notifications-alerts',
+      title: 'Segment-Specific Notifications & Alerts'
+    },
+    {
+      id: 'error-codes-trading-restrictions',
+      title: 'Error Codes & Trading Restrictions'
     }
   ],
   'nri-international-client-help': [
     {
-      id: 'nri-account-opening',
-      title: 'NRI Account Opening'
+      id: 'eligibility-account-types',
+      title: 'Eligibility & Account Types'
     },
     {
-      id: 'pis-permission',
-      title: 'PIS Permission'
+      id: 'account-opening-for-nris',
+      title: 'Account Opening for NRIs'
     },
     {
-      id: 'nri-trading-rules',
-      title: 'NRI Trading Rules'
+      id: 'pis-vs-non-pis-route',
+      title: 'PIS vs Non-PIS Route'
     },
     {
-      id: 'foreign-exchange',
-      title: 'Foreign Exchange'
+      id: 'banking-fund-transfers',
+      title: 'Banking & Fund Transfers'
     },
     {
-      id: 'repatriation-benefits',
-      title: 'Repatriation Benefits'
+      id: 'taxation-for-nris',
+      title: 'Taxation for NRIs'
     },
     {
-      id: 'international-transfers',
-      title: 'International Transfers'
-    }
-  ],
-  'new-user-guide-getting-started': [
-    {
-      id: 'first-time-login',
-      title: 'First Time Login'
+      id: 'trading-investment-restrictions',
+      title: 'Trading & Investment Restrictions'
     },
     {
-      id: 'platform-walkthrough',
-      title: 'Platform Walkthrough'
+      id: 'mutual-funds-corporate-actions',
+      title: 'Mutual Funds & Corporate Actions'
     },
     {
-      id: 'place-first-order',
-      title: 'Place First Order'
+      id: 'regulatory-disclosures-compliance',
+      title: 'Regulatory Disclosures & Compliance'
     },
     {
-      id: 'understanding-charges',
-      title: 'Understanding Charges'
+      id: 'support-escalation-for-nris',
+      title: 'Support & Escalation for NRIs'
     },
     {
-      id: 'basic-trading-concepts',
-      title: 'Basic Trading Concepts'
-    },
-    {
-      id: 'risk-management',
-      title: 'Risk Management'
+      id: 'account-modification-closure-nri-specific',
+      title: 'Account Modification & Closure (NRI-specific)'
     }
   ]
 };
