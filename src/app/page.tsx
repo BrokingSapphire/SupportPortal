@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
+import { topics, getSubcategoriesByTopic } from '@/constants';
 
 interface HelpLink {
   text: string;
@@ -29,113 +30,50 @@ const HelpCenterHomepage: React.FC = () => {
     'US stocks'
   ];
 
-  const helpCategories: HelpCategory[] = [
-    {
-      icon: (
+  // Dynamic help categories based on constants
+  const helpCategories: HelpCategory[] = topics.map((topic) => {
+    const subcategories = getSubcategoriesByTopic(topic.id);
+    const links: HelpLink[] = subcategories.map((subcategory) => ({
+      text: subcategory.title,
+      color: 'text-blue-500',
+      href: `/support/${topic.id}/${subcategory.id}`
+    }));
+
+    // Map topic IDs to icons
+    const getIcon = (topicId: string) => {
+      const iconMap: { [key: string]: string } = {
+        'account-opening-kyc': '/home/account opening.svg',
+        'fund-transfer-withdrawals': '/home/funds.svg',
+        'trading-orders': '/home/terminal.svg',
+        'reports-statements': '/home/reports.svg',
+        'ipos-buybacks-corporate-actions': '/home/terminal.svg',
+        'technical-platform-issues': '/home/terminal.svg',
+        'api-developer-access': '/home/terminal.svg',
+        'regulatory-disclosures': '/home/account.svg',
+        'sub-broker-franchise-help': '/home/account.svg',
+        'account-reactivation-closure': '/home/account.svg',
+        'segment-specific-help': '/home/terminal.svg',
+        'nri-international-client-help': '/home/account.svg',
+        'new-user-guide-getting-started': '/home/account.svg',
+        'pledge-margin-collateral': '/home/terminal.svg'
+      };
+
+      const iconPath = iconMap[topicId] || '/home/account.svg';
+      return (
         <img 
-          src="/home/account opening.svg" 
-          alt="Account Opening" 
+          src={iconPath} 
+          alt={topic.title} 
           className="w-5 h-5"
         />
-      ),
-      title: 'Account Opening',
-      links: [
-        { text: 'Resident Individual', color: 'text-blue-500', href: '/support/account-opening/resident-individual' },
-        { text: 'Minor', color: 'text-blue-500', href: '/support/account-opening/minor' },
-        { text: 'Non-Residential Indian (NRI)', color: 'text-blue-500', href: '/support/account-opening/nri' },
-        { text: 'Company, Partnership, HUF and LLP', color: 'text-blue-500', href: '/support/account-opening/corporate' },
-        { text: 'Glossary', color: 'text-blue-500', href: '/support/account-opening/glossary' }
-      ]
-    },
-    {
-      icon: (
-        <img 
-          src="/home/account.svg" 
-          alt="Your Sapphire Account" 
-          className="w-5 h-5"
-        />
-      ),
-      title: 'Your Sapphire Account',
-      links: [
-        { text: 'Your Profile', color: 'text-blue-500', href: '/support/your-sapphire-account/profile-management' },
-        { text: 'Account Modification', color: 'text-blue-500', href: '/support/your-sapphire-account/account-modification' },
-        { text: 'Client Master Report (CMR) and Depository Participant (DP)', color: 'text-blue-500', href: '/support/your-sapphire-account/cmr-dp' },
-        { text: 'Nomination', color: 'text-blue-500', href: '/support/your-sapphire-account/nomination' },
-        { text: 'Transfer and conversion of securities', color: 'text-blue-500', href: '/support/your-sapphire-account/securities-transfer' }
-      ]
-    },
-    {
-      icon: (
-        <img 
-          src="/home/funds.svg" 
-          alt="Funds" 
-          className="w-5 h-5"
-        />
-      ),
-      title: 'Funds',
-      links: [
-        { text: 'Add money', color: 'text-blue-500', href: '/support/funds/add-money' },
-        { text: 'Withdraw money', color: 'text-blue-500', href: '/support/funds/withdraw-money' },
-        { text: 'Add bank accounts', color: 'text-blue-500', href: '/support/funds/bank-accounts' },
-        { text: 'eMandates', color: 'text-blue-500', href: '/support/funds/emandates' },
-        { text: 'Alerts and ledgers', color: 'text-blue-500', href: '/support/funds/alerts-ledgers' },
-        { text: 'General', color: 'text-blue-500', href: '/support/funds/general' }
-      ]
-    },
-    {
-      icon: (
-        <img 
-          src="/home/mutual funds.svg" 
-          alt="Mutual Funds" 
-          className="w-5 h-5"
-        />
-      ),
-      title: 'Mutual Funds',
-      links: [
-        { text: 'Mutual Funds', color: 'text-blue-500', href: '/support/mutual-funds/mutual-funds' },
-        { text: 'National Pension Scheme (NPS)', color: 'text-blue-500', href: '/support/mutual-funds/nps' },
-        { text: 'Features on Coin', color: 'text-blue-500', href: '/support/mutual-funds/coin-features' },
-        { text: 'Payments and Orders', color: 'text-blue-500', href: '/support/mutual-funds/payments-orders' },
-        { text: 'General', color: 'text-blue-500', href: '/support/mutual-funds/general' }
-      ]
-    },
-    {
-      icon: (
-        <img 
-          src="/home/reports.svg" 
-          alt="Reports" 
-          className="w-5 h-5"
-        />
-      ),
-      title: 'Reports',
-      links: [
-        { text: 'Portfolio', color: 'text-blue-500', href: '/support/reports/portfolio' },
-        { text: 'Corporate actions', color: 'text-blue-500', href: '/support/reports/corporate-actions' },
-        { text: 'Fund Statements', color: 'text-blue-500', href: '/support/reports/fund-statements' },
-        { text: 'Report', color: 'text-blue-500', href: '/support/reports/general-reports' },
-        { text: 'Profile', color: 'text-blue-500', href: '/support/reports/profile-reports' },
-        { text: 'Segments', color: 'text-blue-500', href: '/support/reports/segments' }
-      ]
-    },
-    {
-      icon: (
-        <img 
-          src="/home/terminal.svg" 
-          alt="Terminal" 
-          className="w-5 h-5"
-        />
-      ),
-      title: 'Terminal',
-      links: [
-        { text: 'IPO', color: 'text-blue-500', href: '/support/terminal/ipo' },
-        { text: 'Trading FAQs', color: 'text-blue-500', href: '/support/terminal/trading-faqs' },
-        { text: 'Margin Trading Facilities', color: 'text-blue-500', href: '/support/terminal/margin-trading' },
-        { text: 'Charts and orders', color: 'text-blue-500', href: '/support/terminal/charts-orders' },
-        { text: 'Alerts and Nudges', color: 'text-blue-500', href: '/support/terminal/alerts-nudges' },
-        { text: 'General', color: 'text-blue-500', href: '/support/terminal/general' }
-      ]
-    }
-  ];
+      );
+    };
+
+    return {
+      icon: getIcon(topic.id),
+      title: topic.title,
+      links
+    };
+  });
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -152,11 +90,11 @@ const HelpCenterHomepage: React.FC = () => {
     // Filter by active tab
     if (activeTab !== 'Most Asked') {
       const tabCategoryMapping: { [key: string]: string[] } = {
-        'Your Sapphire account': ['Your Sapphire Account', 'Account Opening'],
-        'Funds': ['Funds'],
-        'Services': ['Terminal', 'Reports'],
-        'Mutual Funds': ['Mutual Funds'],
-        'US stocks': ['Terminal']
+        'Your Sapphire account': ['Account Opening & KYC', 'Account Reactivation/Closure', 'Regulatory Disclosures', 'Sub-Broker / Franchise Help', 'NRI & International Client Help', 'New User Guide / Getting Started'],
+        'Funds': ['Fund Transfer & Withdrawals'],
+        'Services': ['Trading & Orders', 'Reports & Statements', 'Technical & Platform Issues', 'API & Developer Access', 'Segment-Specific Help (NSE, BSE, MCX, NCDEX)', 'Pledge, Margin & Collateral'],
+        'Mutual Funds': ['Reports & Statements'],
+        'US stocks': ['Trading & Orders', 'Technical & Platform Issues']
       };
 
       const allowedCategories = tabCategoryMapping[activeTab] || [];

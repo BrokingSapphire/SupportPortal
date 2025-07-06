@@ -582,6 +582,40 @@ export const subcategories: TopicSubcategories = {
       title: "Account Modification & Closure (NRI-specific)",
     },
   ],
+  "new-user-guide-getting-started": [
+    {
+      id: "platform-overview",
+      title: "Platform Overview",
+    },
+    {
+      id: "first-steps",
+      title: "First Steps",
+    },
+    {
+      id: "account-setup",
+      title: "Account Setup",
+    },
+    {
+      id: "basic-trading",
+      title: "Basic Trading",
+    },
+    {
+      id: "safety-security",
+      title: "Safety & Security",
+    },
+    {
+      id: "common-features",
+      title: "Common Features",
+    },
+    {
+      id: "troubleshooting",
+      title: "Troubleshooting",
+    },
+    {
+      id: "support-resources",
+      title: "Support Resources",
+    },
+  ],
 };
 
 export const getSubcategoriesByTopic = (topicId: string): Subcategory[] => {

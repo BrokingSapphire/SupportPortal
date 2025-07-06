@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, Search, ArrowLeft, ChevronDown } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
-import { getDoubtsByTopic, getQuestionsByDoubt, getTopicTitle, getDoubtTitle } from '@/constants';
+import { getSubcategoriesByTopic, getSubcategoryTitle, getCategoryTitle, getQuestionsBySubcategory } from '@/constants';
 
 const DoubtPage: React.FC = () => {
   const params = useParams();
@@ -15,9 +15,9 @@ const DoubtPage: React.FC = () => {
   const doubt = params.doubt as string;
   
   // Get data from constants
-  const topicTitle = getTopicTitle(topic);
-  const doubtTitle = getDoubtTitle(topic, doubt);
-  const questions = getQuestionsByDoubt(topic, doubt);
+  const topicTitle = getCategoryTitle(topic);
+  const doubtTitle = getSubcategoryTitle(topic, doubt);
+  const questions = getQuestionsBySubcategory(topic, doubt);
 
   // Debug logging
   console.log('Topic:', topic);
@@ -90,7 +90,7 @@ const DoubtPage: React.FC = () => {
 
           {/* Navigation */}
           <div className="p-4 pl-0">
-            {getDoubtsByTopic(topic).map((doubtItem) => (
+            {getSubcategoriesByTopic(topic).map((doubtItem) => (
               <div 
                 key={doubtItem.id} 
                 className={`mb-4 rounded-lg pl-0 ${
@@ -99,7 +99,7 @@ const DoubtPage: React.FC = () => {
               >
                 {/* Doubt Section Header */}
                 <button
-                  onClick={() => toggleDoubt(doubtItem.id)}
+                  onClick={() => setExpandedDoubt(expandedDoubt === doubtItem.id ? '' : doubtItem.id)}
                   className={`flex items-center justify-between w-full p-2 text-left rounded-md transition-colors ${
                     doubt === doubtItem.id
                       ? 'bg-[#F5F7FA] text-gray-900'
@@ -119,8 +119,8 @@ const DoubtPage: React.FC = () => {
                 {/* Questions List */}
                 {expandedDoubt === doubtItem.id && (
                   <div className="ml-6 pb-2">
-                    {getQuestionsByDoubt(topic, doubtItem.id).map((question) => {
-                      const isActive = doubt === doubtItem.id && window.location.pathname.includes(question.id);
+                    {getQuestionsBySubcategory(topic, doubtItem.id).map((question: any) => {
+                      const isActive = doubt === doubtItem.id && typeof window !== 'undefined' && window.location.pathname.includes(question.id);
                       return (
                         <Link
                           key={question.id}
@@ -151,11 +151,11 @@ const DoubtPage: React.FC = () => {
             <div className="space-y-3">
               {questions && questions.length > 0 ? (
                 questions
-                  .filter((question) => 
+                  .filter((question: any) => 
                     !searchQuery || 
                     question.question.toLowerCase().includes(searchQuery.toLowerCase())
                   )
-                  .map((question) => (
+                  .map((question: any) => (
                     <Link
                       key={question.id}
                       href={`/support/${topic}/${doubt}/${question.id}`}
@@ -175,7 +175,7 @@ const DoubtPage: React.FC = () => {
             </div>
 
             {/* No results message */}
-            {searchQuery && questions && questions.filter((question) =>
+            {searchQuery && questions && questions.filter((question: any) =>
               question.question.toLowerCase().includes(searchQuery.toLowerCase())
             ).length === 0 && (
               <div className="text-center py-8">

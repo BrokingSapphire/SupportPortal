@@ -482,6 +482,143 @@ export const questions: TopicQuestions = {
       },
     },
   },
+  "new-user-guide-getting-started": {
+    "platform-overview": {
+      "what-is-sapphire-broking": {
+        id: "what-is-sapphire-broking",
+        question: "What is Sapphire Broking and what services do you offer?",
+        answer: `<p>Sapphire Broking is a leading financial services company that provides comprehensive trading and investment solutions:</p>
+            
+            <h3>Our Services</h3>
+            <ul>
+              <li><strong>Equity Trading:</strong> Buy and sell stocks on NSE, BSE</li>
+              <li><strong>F&O Trading:</strong> Futures and Options trading</li>
+              <li><strong>Commodity Trading:</strong> MCX, NCDEX trading</li>
+              <li><strong>Currency Trading:</strong> Currency derivatives</li>
+              <li><strong>Mutual Funds:</strong> Direct mutual fund investments</li>
+              <li><strong>IPOs:</strong> Apply for Initial Public Offerings</li>
+              <li><strong>Research:</strong> Market analysis and recommendations</li>
+            </ul>
+
+            <h3>Key Features</h3>
+            <ul>
+              <li>Advanced trading platforms</li>
+              <li>Mobile and web applications</li>
+              <li>Real-time market data</li>
+              <li>24/7 customer support</li>
+              <li>Competitive brokerage rates</li>
+              <li>Secure and regulated</li>
+            </ul>
+
+            <h3>Why Choose Sapphire Broking?</h3>
+            <ul>
+              <li>SEBI registered broker</li>
+              <li>Multiple exchange memberships</li>
+              <li>Advanced technology</li>
+              <li>Expert support team</li>
+              <li>Educational resources</li>
+            </ul>`,
+        lastUpdated: "2025-07-01",
+        helpful: 45,
+        notHelpful: 2,
+      },
+    },
+    "first-steps": {
+      "how-to-get-started": {
+        id: "how-to-get-started",
+        question: "How do I get started with Sapphire Broking?",
+        answer: `<p>Getting started with Sapphire Broking is simple and can be completed online:</p>
+            
+            <h3>Step 1: Account Opening</h3>
+            <ol>
+              <li>Visit our website or download the mobile app</li>
+              <li>Click on "Open Account" or "Get Started"</li>
+              <li>Enter your basic details (name, mobile, email)</li>
+              <li>Complete KYC verification</li>
+              <li>Upload required documents</li>
+              <li>Complete In-Person Verification (IPV)</li>
+              <li>Sign documents digitally</li>
+            </ol>
+
+            <h3>Step 2: Account Activation</h3>
+            <ul>
+              <li>Account processed within 24-48 hours</li>
+              <li>Receive login credentials via SMS/Email</li>
+              <li>Set up your trading password</li>
+              <li>Link your bank account</li>
+            </ul>
+
+            <h3>Step 3: Start Trading</h3>
+            <ul>
+              <li>Add funds to your account</li>
+              <li>Explore the trading platform</li>
+              <li>Place your first order</li>
+              <li>Access research and analysis</li>
+            </ul>
+
+            <h3>Required Documents</h3>
+            <ul>
+              <li>PAN Card (mandatory)</li>
+              <li>Aadhaar Card</li>
+              <li>Bank Account details</li>
+              <li>Income proof (for F&O)</li>
+            </ul>`,
+        lastUpdated: "2025-07-01",
+        helpful: 67,
+        notHelpful: 3,
+      },
+    },
+    "account-setup": {
+      "setting-up-trading-account": {
+        id: "setting-up-trading-account",
+        question: "How to set up my trading account after opening?",
+        answer: `<p>After your account is opened, follow these steps to set it up completely:</p>
+            
+            <h3>Initial Setup</h3>
+            <ol>
+              <li><strong>Login:</strong> Use the credentials sent to your mobile/email</li>
+              <li><strong>Change Password:</strong> Set a strong, unique password</li>
+              <li><strong>Complete Profile:</strong> Add missing information if any</li>
+              <li><strong>Bank Linking:</strong> Link your bank account for fund transfers</li>
+            </ol>
+
+            <h3>Security Setup</h3>
+            <ul>
+              <li>Enable two-factor authentication (2FA)</li>
+              <li>Set up security questions</li>
+              <li>Configure login alerts</li>
+              <li>Review privacy settings</li>
+            </ul>
+
+            <h3>Trading Setup</h3>
+            <ul>
+              <li>Choose trading segments (Equity, F&O, etc.)</li>
+              <li>Set up watchlists</li>
+              <li>Configure order preferences</li>
+              <li>Set up price alerts</li>
+            </ul>
+
+            <h3>Mobile App Setup</h3>
+            <ul>
+              <li>Download mobile app</li>
+              <li>Login with same credentials</li>
+              <li>Enable biometric login</li>
+              <li>Set up notifications</li>
+            </ul>
+
+            <h3>First Steps</h3>
+            <ul>
+              <li>Add funds to your account</li>
+              <li>Explore the platform features</li>
+              <li>Read educational content</li>
+              <li>Start with small trades</li>
+            </ul>`,
+        lastUpdated: "2025-07-01",
+        helpful: 34,
+        notHelpful: 1,
+      },
+    },
+  },
 };
 
 // Helper functions to work with the new structure
