@@ -51,6 +51,6 @@ jobs:
             
             mv static .next/
             
-            echo "Starting terminal..."
+            echo "Starting support portal..."
             PORT=${{ secrets.EC2_PORT }} screen -S sapphire-support -d -m $(which node) server.js
           SCRIPT_AFTER_REQUIRED: true
