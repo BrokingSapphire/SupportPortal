@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown, ChevronRight } from 'lucide-react';
 import { getDoubtsByTopic, getQuestionsByDoubt, getTopicTitle, getDoubtTitle } from '@/constants';
 
 interface SidebarProps {
@@ -57,7 +56,7 @@ const QuestionSidebar: React.FC<SidebarProps> = ({ currentTopic, currentDoubt, c
             {/* Doubt Section Header */}
             <button
               onClick={() => toggleDoubt(doubtSection.id)}
-              className={`flex items-center justify-between w-full p-2 text-left rounded-md transition-colors ${
+              className={`flex items-center justify-between w-full text-left rounded-md transition-colors ${
                 currentDoubt === doubtSection.id
                   ? 'bg-[#F5F7FA] text-gray-900'
                   : 'text-gray-700 hover:bg-gray-50'
@@ -65,9 +64,9 @@ const QuestionSidebar: React.FC<SidebarProps> = ({ currentTopic, currentDoubt, c
             >
               <div className="flex items-center">
                 {expandedDoubt === doubtSection.id ? (
-                  <ChevronDown className="w-7 h-7 mr-2 text-gray-500 border border-gray-300 rounded-md" />
+                  <img src="/questions list/rightarrow.svg" alt="Collapse" className="w-7 h-7 mr-0 rounded-md text-gray-500 border border-gray-300 rotate-90 transition-transform duration-200" />
                 ) : (
-                  <ChevronRight className="w-7 h-7 mr-2 border border-gray-300 rounded-md text-gray-500" />
+                  <img src="/questions list/rightarrow.svg" alt="Expand" className="w-7 h-7 mr-0 border border-gray-300 rounded-md text-gray-500 transition-transform duration-200" />
                 )}
                 <span className="font-medium">{doubtSection.title}</span>
               </div>
@@ -82,7 +81,7 @@ const QuestionSidebar: React.FC<SidebarProps> = ({ currentTopic, currentDoubt, c
                     <Link
                       key={question.id}
                       href={`/support/${currentTopic}/${doubtSection.id}/${question.id}`}
-                      className={`block p-2 text-sm transition-colors ${
+                      className={`block px-2 text-[12px] font-medium font-poppins transition-colors ${
                         isActive
                           ? 'bg-blue-100 text-blue-800 border-l-[2px] border-black'
                           : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 border-l border-gray-400'
