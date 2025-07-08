@@ -68,8 +68,8 @@ const DoubtPage: React.FC = () => {
 
         {/* Breadcrumb */}
         <div className="bg-[#F5F7FA] px-50 mt-10">
-          <div className="w-full mx-auto px-40 py-4">
-            <div className='max-w-7xl mx-auto'>
+          <div className="max-w-7xl mx-auto pl-0 py-4">
+            <div className='max-w-7xl pl-0'>
               <nav className="flex items-center space-x-2 text-[16px] align-left font-regular font-poppins text-gray-600">
                 <Link href="/" className="hover:text-[#064D51]">Home</Link>
                 <ChevronRight className="w-4 h-4" />
