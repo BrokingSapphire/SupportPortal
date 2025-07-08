@@ -226,8 +226,8 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-[#064D51] text-white p-4 sm:py-8 sm:px-20 mx-auto">
-        <div className="max-w-7xl xl:max-w-7xl mx-auto">
+      <footer className="bg-[#064D51] text-white w-full">
+        <div className="max-w-7xl mx-auto p-4 sm:py-8 sm:px-20">
           {/* Mobile Layout (hidden on sm and above) */}
           <div className="sm:hidden">
             {/* Full Width Sapphire Address */}
