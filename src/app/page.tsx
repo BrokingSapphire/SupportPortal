@@ -42,20 +42,20 @@ const HelpCenterHomepage: React.FC = () => {
     // Map topic IDs to icons
     const getIcon = (topicId: string) => {
       const iconMap: { [key: string]: string } = {
-        'account-opening-kyc': '/home/account opening.svg',
-        'fund-transfer-withdrawals': '/home/funds.svg',
-        'trading-orders': '/home/terminal.svg',
-        'reports-statements': '/home/reports.svg',
-        'ipos-buybacks-corporate-actions': '/home/terminal.svg',
-        'technical-platform-issues': '/home/terminal.svg',
-        'api-developer-access': '/home/terminal.svg',
-        'regulatory-disclosures': '/home/account.svg',
-        'sub-broker-franchise-help': '/home/account.svg',
-        'account-reactivation-closure': '/home/account.svg',
-        'segment-specific-help': '/home/terminal.svg',
-        'nri-international-client-help': '/home/account.svg',
-        'new-user-guide-getting-started': '/home/account.svg',
-        'pledge-margin-collateral': '/home/terminal.svg'
+        'account-opening-kyc': '/home/account opening.png',
+        'fund-transfer-withdrawals': '/home/funds.png',
+        'trading-orders': '/home/terminal.png',
+        'reports-statements': '/home/reports.png',
+        'ipos-buybacks-corporate-actions': '/home/terminal.png',
+        'technical-platform-issues': '/home/terminal.png',
+        'api-developer-access': '/home/terminal.png',
+        'regulatory-disclosures': '/home/account.png',
+        'sub-broker-franchise-help': '/home/account.png',
+        'account-reactivation-closure': '/home/account.png',
+        'segment-specific-help': '/home/terminal.png',
+        'nri-international-client-help': '/home/account.png',
+        'new-user-guide-getting-started': '/home/account.png',
+        'pledge-margin-collateral': '/home/terminal.png'
       };
 
       const iconPath = iconMap[topicId] || '/home/account.svg';
@@ -63,7 +63,7 @@ const HelpCenterHomepage: React.FC = () => {
         <img 
           src={iconPath} 
           alt={topic.title} 
-          className="w-5 h-5"
+          className=""
         />
       );
     };
@@ -126,32 +126,31 @@ const HelpCenterHomepage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white pt-20 mx-auto">
       {/* Header Section */}
-      <div className="bg-[#F5F7FA]">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="bg-[#F5F7FA] -mt-2">
+        <div className="max-w-7xl mx-auto pr-6 py-12">
           <div className="flex items-center justify-between">
             <div className="flex-1 max-w-4xl">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">How can we help?</h1>
+              <p className="text-[42px] font-medium font-lexend text-gray-900 mb-[6px]">How can we help?</p>
               <p className="text-gray-500 mb-8">Find instant answers by searching our help center or browsing topics.</p>
               
               {/* Search Bar and My Tickets Button Row */}
-              <div className="flex items-center space-x-4">
-                <form onSubmit={handleSearch} className="relative flex-1 max-w-lg">
+              <div className="flex items-center mr-2 w-full">
+                <form onSubmit={handleSearch} className="relative flex-shrink flex-grow">
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#064D51] w-5 h-5" />
                   <input
                     type="text"
-                    placeholder="Search for anything..."
+                    placeholder="Eg: how do i activate F&O, why is my order getting rejected ..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
+                    className="w-[720px] pl-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
                   />
                 </form>
-                
-                <button className="flex items-center space-x-2 px-4 py-3 text-blue-600 transition-colors whitespace-nowrap">
-                  <span className="font-medium text-[#064D51]">My Tickets</span>
+                <button className="flex items-center space-x-2 py-3 text-blue-600 transition-colors whitespace-nowrap flex-shrink-0">
+                  <span className="font-medium font-poppins text-[20px] text-[#064D51]">My Tickets</span>
                   <img
                     src="/home/ticket.svg"
                     alt="Ticket"
-                    className="w-5 h-5 object-contain"
+                    className="w-[30px] h-[30px] object-contain"
                   />
                 </button>
               </div>
@@ -162,7 +161,7 @@ const HelpCenterHomepage: React.FC = () => {
               <img
                 src="/home/home1.svg"
                 alt="Help Center Illustration"
-                className="w-64 h-40 object-contain"
+                className="w-[290px] h-[212px] object-contain"
               />
             </div>
           </div>
@@ -205,11 +204,17 @@ const HelpCenterHomepage: React.FC = () => {
             </p>
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-white max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[60px] bg-white max-w-7xl">
           {getFilteredCategories().map((category, index) => (
-            <div key={index} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-sm transition-shadow">
+            <div key={index} className="bg-[rgba(255, 255, 255, 0.1)] backdrop-blur-md rounded-lg border border-gray-300 py-[20px] px-[24px] hover:shadow-lg transition-shadow relative">
+              {/* Featured Badge */}
+              {index === 0 && (
+                <div className="absolute top-5 -right-[14px]">
+                  <span className="inline-block bg-[#f7fcfc] border-[1.5px] border-[#0a8080] font-poppins text-[14px] font-regular px-4 py-[6px] rounded-l-[4px] shadow-sm" style={{lineHeight: '1.2'}}>Featured</span>
+                </div>
+              )}
               {/* Category Header */}
-              <div className="p-2 flex items-center justify-center w-10 bg-red-100 rounded-lg">
+              <div className="flex items-center justify-center w-10 bg-red-100 rounded-lg">
                 {category.icon}
               </div>
               <div className="flex-1 min-w-0 my-[18px]">
@@ -217,7 +222,7 @@ const HelpCenterHomepage: React.FC = () => {
               </div>
 
               {/* Category Links */}
-              <div className="space-y-2">
+              <div className="space-y-[12px]">
                 {category.links.map((link, linkIndex) => (
                   <button
                     key={linkIndex}
@@ -226,7 +231,7 @@ const HelpCenterHomepage: React.FC = () => {
                         router.push(link.href);
                       }
                     }}
-                    className="block text-left w-full text-sm text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+                    className="block text-left w-full text-sm text-[#2f7fff] hover:underline transition-colors"
                   >
                     {link.text}
                   </button>
