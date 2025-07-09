@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Search, ChevronRight, X } from "lucide-react";
 
@@ -26,90 +26,123 @@ const TICKETS = [
 ];
 
 const STATUS_STYLES: Record<string, string> = {
-    Closed: "bg-red-100 text-red-500 border border-red-200",
-    Active: "bg-green-100 text-green-600 border border-green-200",
-    Resolved: "bg-purple-100 text-purple-600 border border-purple-200",
+    Closed: "bg-red-100 text-[#f10930] bg-[#ffefeb]",
+    Active: "bg-[#e2fcdb] text-[#34a853] ",
+    Resolved: "bg-[#f0e3ff] text-[#8b42e3] ",
 };
 
 const TABS = ["All", "Active", "Closed", "Resolved"];
 
 function ChatbotModal({ ticket, onClose }: { ticket: any, onClose: () => void }) {
-  // Dummy messages for demo
-  const messages = [
-    {
-      id: 1,
-      sender: "user",
-      text: ticket.subject,
-      time: "Jun 15, 02:53 pm",
-    },
-    {
-      id: 2,
-      sender: "support",
-      text: "Hi! It may be delayed due to review or missing info. Can you share your email so I can check?",
-      time: "Jun 15, 02:53 pm",
-    },
-    {
-      id: 3,
-      sender: "support",
-      text: "Hi! It may be delayed due to review or missing info. Can you share your email so I can check?",
-      time: "Jun 15, 02:56 pm",
-    },
-  ];
-  const [input, setInput] = useState("");
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col" style={{ height: 600 }}>
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-[#6B7280] rounded-t-xl">
-          <div>
-            <div className="text-white font-medium text-base leading-tight">{ticket.subject}</div>
-            <div className="text-xs text-gray-200 mt-1">Ticket Id  {ticket.number}</div>
-          </div>
-          <button className="text-white hover:text-gray-300" onClick={onClose}>
-            <X size={22} />
-          </button>
-        </div>
-        {/* Chat Area */}
-        <div className="flex-1 overflow-y-auto px-4 py-4 bg-white">
-          {messages.map((msg) => (
-            <div key={msg.id} className={`flex mb-4 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-              {msg.sender === "support" && (
-                <div className="flex-shrink-0 mr-2">
-                  <img src="/avatar-support.png" alt="Support" className="w-7 h-7 rounded-full bg-gray-200" />
+    // Dummy messages for demo
+    const messages = [
+        {
+            id: 1,
+            sender: "user",
+            text: ticket.subject,
+            time: "Jun 15, 02:53 pm",
+        },
+        {
+            id: 2,
+            sender: "support",
+            text: "Hi! It may be delayed due to review or missing info. Can you share your email so I can check?",
+            time: "Jun 15, 02:53 pm",
+        },
+        {
+            id: 3,
+            sender: "support",
+            text: "Hi! It may be delayed due to review or missing info. Can you share your email so I can check?",
+            time: "Jun 15, 02:56 pm",
+        },
+    ];
+    const [input, setInput] = useState("");
+    return (
+        <div className="fixed inset-0 z-50 flex items-end justify-end bg-black bg-opacity-30">
+            <div
+                className="w-full max-w-md bg-white rounded-[8px] shadow-lg  flex flex-col overflow-hidden"
+                style={{ height: "95%", width: 400, marginRight: 20, marginBottom: 20 }}
+            >
+                {/* Header */}
+                <div className="flex items-center justify-between px-7 py-6 bg-[#838591] rounded-t-[8px] overflow-hidden">
+                    <div>
+                        <div className="text-white font-medium text-base leading-tight">{ticket.subject}</div>
+                        <div className="text-xs text-gray-200 mt-1">Ticket Id  {ticket.number}</div>
+                    </div>
+                    <button className="text-white hover:text-gray-300" onClick={onClose}>
+                        <X size={22} />
+                    </button>
                 </div>
-              )}
-              <div className={`max-w-[70%] rounded-lg px-4 py-2 text-sm ${msg.sender === "user" ? "bg-[#0a8080] text-white" : "bg-gray-100 text-gray-800"}`}>
-                {msg.text}
-                <div className="text-[11px] text-right mt-1 text-gray-400">{msg.time}</div>
-              </div>
-              {msg.sender === "user" && (
-                <div className="flex-shrink-0 ml-2">
-                  <img src="/avatar-user.png" alt="You" className="w-7 h-7 rounded-full bg-gray-200" />
+                {/* Chat Area */}
+                <div className="flex-1 overflow-y-auto my-3 py-4 bg-white overflow-x-hidden overflow-hidden scrollbar-hide flex flex-col justify-end" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+                    <style jsx>{`
+            div::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
+                    {messages.map((msg, idx) => (
+                        <React.Fragment key={msg.id}>
+                            <div className={`flex mb-3 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
+                                {msg.sender === "support" && (
+                                    <div className="flex-shrink-0 mr-2 pl-3 flex items-end">
+                                        <img src="/avatar-support.png" alt="Support" className="w-7 h-7 rounded-full bg-gray-200" />
+                                    </div>
+                                )}
+                                <div className={`max-w-[70%] px-4 py-2 text-[14px] font-medium font-poppins ${msg.sender === "user" ? "bg-[#0a8080] text-white rounded-[16px] rounded-br-[4px]" : "bg-gray-100 rounded-[16px] rounded-bl-[4px] text-[#687280]"}`}>
+                                    {msg.text}
+                                    <div className="text-[11px] text-right mt-1 text-gray-400">{msg.time}</div>
+                                </div>
+                                {msg.sender === "user" && (
+                                    <div className="flex-shrink-0 ml-2 pr-3 flex items-end">
+                                        <img src="/avatar-user.png" alt="You" className="w-7 h-7 rounded-full bg-gray-200" />
+                                    </div>
+                                )}
+                            </div>
+                            {/* Show info text after first user message only */}
+                            {msg.sender === "user" && idx === 0 && (
+                                <div className="flex items-center w-full mb-3">
+                                    <div className="flex-grow h-px bg-gray-200" />
+                                    <span className="mx-2 text-[#6b7280] text-[12px] font-poppins font-medium whitespace-nowrap">You're now chatting with Ayush Shs</span>
+                                    <div className="flex-grow h-px bg-gray-200" />
+                                </div>
+                            )}
+                        </React.Fragment>
+                    ))}
                 </div>
-              )}
+                {/* Input */}
+                <form className="flex items-center border-t border-gray-200 px-4 py-3 bg-white rounded-b-xl overflow-hidden">
+                    <img src="/documentIcon.svg" alt="Attach" className="w-6 h-6 mr-3 cursor-pointer" />
+                    <input
+                        type="text"
+                        value={input}
+                        onChange={e => setInput(e.target.value)}
+                        placeholder="Write your message"
+                        className="flex-1 px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0a8080] text-sm bg-[#F5F7FA]"
+                    />
+                    <button type="submit" className="ml-2 p-2 rounded-lg hover:bg-[#e6f2f2] transition-colors flex items-center justify-center">
+                        <img src="/sendIcon.svg" alt="Send" className="w-6 h-6" />
+                    </button>
+                </form>
             </div>
-          ))}
         </div>
-        {/* Input */}
-        <form className="flex items-center border-t border-gray-200 px-4 py-3 bg-white rounded-b-xl">
-          <input
-            type="text"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            placeholder="Write your message"
-            className="flex-1 px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0a8080] text-sm bg-[#F5F7FA]"
-          />
-          <button type="submit" className="ml-2 px-4 py-2 bg-[#0a8080] text-white rounded-lg font-medium text-sm hover:bg-[#086060] transition-colors">Send</button>
-        </form>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default function MyTicketsPage() {
     const [activeTab, setActiveTab] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
     const [chatTicket, setChatTicket] = useState<any>(null);
+
+    // Prevent body scroll when chatbot is open
+    useEffect(() => {
+        if (chatTicket) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [chatTicket]);
 
     const filteredTickets =
         activeTab === "All"
@@ -165,19 +198,19 @@ export default function MyTicketsPage() {
                 </div>
             </div>
 
-            <div className="pt-8 pb-0 max-w-7xl mx-auto mt-6">
+            <div className="pb-0 max-w-7xl mx-auto mt-9">
                 {/* Title */}
-                <h2 className="text-xl font-semibold mb-2 text-gray-900 font-poppins">
+                <h2 className="text-xl font-semibold mb-6 text-gray-900 font-poppins">
                     My Tickets
                 </h2>
                 {/* Tabs */}
-                <div className="flex border-b border-gray-200 gap-8 mb-0 ">
+                <div className="flex border-b border-gray-200 mb-0 ">
                     {TABS.map((tab) => (
                         <button
                             key={tab}
-                            className={`pb-2 mx-3 font-medium transition-colors text-base font-poppins ${activeTab === tab
-                                    ? "border-b-2 min-w-[40px] border-[#0a8080] text-[#0a8080]"
-                                    : "text-gray-500 hover:text-[#0a8080]"
+                            className={`pb-2 px-4 font-medium transition-colors text-base font-poppins ${activeTab === tab
+                                ? "border-b-2 min-w-[40px] border-[#064D51] text-[#064D51]"
+                                : "text-gray-500 hover:text-[#064D51]"
                                 }`}
                             onClick={() => setActiveTab(tab)}
                         >
@@ -224,14 +257,14 @@ export default function MyTicketsPage() {
                                             {ticket.updated}
                                         </td>
                                         <td
-                                            className="px-6 py-4 text-[#0a8080] border-b border-gray-200 cursor-pointer hover:underline"
+                                            className="px-6 py-4 border-b border-gray-200 cursor-pointer "
                                             onClick={() => setChatTicket(ticket)}
                                         >
                                             {ticket.subject}
                                         </td>
                                         <td className="px-6 py-4 border-b border-gray-200">
                                             <span
-                                                className={`px-3 py-1 rounded text-xs font-semibold ${STATUS_STYLES[ticket.status]}`}
+                                                className={`px-3 py-1 rounded text-[12px] font-poppins text-regular ${STATUS_STYLES[ticket.status]}`}
                                             >
                                                 {ticket.status}
                                             </span>
