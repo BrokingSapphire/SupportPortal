@@ -245,7 +245,7 @@ const HelpCenterHomepage: React.FC = () => {
         </div>
         {getFilteredCategories().length === 0 && searchQuery && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No results found for "{searchQuery}"</p>
+            <p className="text-gray-500 text-lg">No results found for &quot;{searchQuery}&quot;</p>
             <p className="text-gray-400 text-sm mt-2">Try searching with different keywords or browse by category.</p>
           </div>
         )}

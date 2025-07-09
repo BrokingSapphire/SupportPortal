@@ -20,7 +20,7 @@ const TopicPage: React.FC = () => {
         <div className="w-full mx-auto px-6 py-8">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Topic Not Found</h1>
-            <p className="text-gray-600 mb-8">The topic you're looking for doesn't exist.</p>
+            <p className="text-gray-600 mb-8">The topic you&apos;re looking for doesn&apos;t exist.</p>
             <Link href="/" className="text-blue-600 hover:text-blue-800">
               Back to Help Center
             </Link>
@@ -93,7 +93,7 @@ const TopicPage: React.FC = () => {
 
             {filteredDoubts.length === 0 && searchQuery && (
               <div className="text-center py-12">
-                <p className="text-gray-500">No results found for "{searchQuery}"</p>
+                <p className="text-gray-500">No results found for &quot;{searchQuery}&quot;</p>
               </div>
             )}
           </div>
