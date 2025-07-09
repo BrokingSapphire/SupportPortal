@@ -86,7 +86,7 @@ const DoubtPage: React.FC = () => {
 
       <div className="flex flex-col lg:flex-row w-full mt-6 sm:mt-8 md:mt-10 max-w-7xl mx-auto px-3 sm:px-4 lg:px-0">
         {/* Sidebar */}
-        <div className="w-full lg:w-80 xl:w-96 bg-white h-auto lg:h-full overflow-x-auto lg:overflow-y-auto border-b lg:border-b-0 lg:border-r border-gray-200 lg:pr-4">
+        <div className="hidden lg:block w-full lg:w-80 xl:w-96 bg-white h-auto lg:h-full overflow-x-auto lg:overflow-y-auto border-b lg:border-b-0 lg:pr-4">
           {/* Header */}
           <div className="pr-4 pt-4 lg:pt-0">
             <h2 className="text-sm sm:text-base md:text-lg font-semibold text-[#9d9f9f]">{topicTitle}</h2>
@@ -144,7 +144,7 @@ const DoubtPage: React.FC = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 bg-white border-t lg:border-t-0 lg:border-l-2 mt-4 sm:mt-6 lg:mt-0 lg:ml-3 xl:ml-5 border-gray-200 pl-0 sm:pl-4 lg:pl-8 xl:pl-[60px] pr-3 sm:pr-4 lg:pr-0">
+        <div className="flex-1 bg-white lg:border-l-2 mt-4 sm:mt-6 lg:mt-0 lg:ml-3 xl:ml-5 border-gray-200 pl-0 sm:pl-4 lg:pl-8 xl:pl-[60px] pr-3 sm:pr-4 lg:pr-0">
           <div className="pt-0 w-full max-w-none sm:max-w-[95%] md:max-w-[810px] mx-auto lg:mx-0">
             <h1 className="text-lg sm:text-xl md:text-2xl lg:text-[28px] font-poppins font-medium text-gray-900 mb-3 sm:mb-4 md:mb-6 leading-tight">{doubtTitle}</h1>
 
