@@ -38,56 +38,58 @@ const QuestionSidebar: React.FC<SidebarProps> = ({ currentTopic, currentDoubt, c
   };
 
   return (
-    <div className="w-80 bg-white h-full overflow-y-auto">
+    <div className="w-full lg:w-80 xl:w-96 bg-white h-auto lg:h-full overflow-x-auto lg:overflow-y-auto border-b lg:border-b-0 lg:pr-4">
       {/* Header */}
-      <div className="p-4 pl-0">
-        <h2 className="text-lg font-semibold text-gray-900">{topicTitle}</h2>
+      <div className="pr-4 pt-4 lg:pt-0">
+        <h2 className="text-sm sm:text-base md:text-lg font-semibold text-[#9d9f9f]">{topicTitle}</h2>
       </div>
 
       {/* Navigation */}
-      <div className="p-4 pl-0">
+      <div className="p-2 sm:p-4 pl-2 pt-0">
         {doubtSections.map((doubtSection) => (
-          <div 
-            key={doubtSection.id} 
-            className={`mb-4 rounded-lg pl-0 ${
-              currentDoubt === doubtSection.id ? 'bg-[#F5F7FA]' : ''
+          <div
+            key={doubtSection.id}
+            className={`rounded-lg pl-0 ${
+              currentDoubt === doubtSection.id
+                ? 'bg-[#F5F7FA] mb-2'
+                : 'bg-white' + ' mb-1'
             }`}
           >
             {/* Doubt Section Header */}
             <button
               onClick={() => toggleDoubt(doubtSection.id)}
-              className={`flex items-center justify-between w-full text-left rounded-md transition-colors ${
+              className={`flex items-center justify-between w-full pt-3 sm:pt-4 md:pt-6 text-left rounded-md transition-colors ${
                 currentDoubt === doubtSection.id
-                  ? 'bg-[#F5F7FA] text-gray-900'
+                  ? 'text-gray-900'
                   : 'text-gray-700 hover:bg-gray-50'
               }`}
             >
-              <div className="flex items-center">
+              <div className="flex items-center ml-1 sm:ml-2 md:ml-[8px]">
                 {expandedDoubt === doubtSection.id ? (
-                  <img src="/questions list/rightarrow.svg" alt="Collapse" className="w-7 h-7 mr-0 rounded-md text-gray-500 border border-gray-300 rotate-90 transition-transform duration-200" />
+                  <img src="/questions list/rightarrow.svg" alt="Collapse" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 rotate-90 transition-transform duration-200 flex-shrink-0" />
                 ) : (
-                  <img src="/questions list/rightarrow.svg" alt="Expand" className="w-7 h-7 mr-0 border border-gray-300 rounded-md text-gray-500 transition-transform duration-200" />
+                  <img src="/questions list/rightarrow.svg" alt="Expand" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 transition-transform duration-200 flex-shrink-0" />
                 )}
-                <span className="font-medium">{doubtSection.title}</span>
+                <span className="font-medium text-sm sm:text-base">{doubtSection.title}</span>
               </div>
             </button>
 
             {/* Questions List */}
             {expandedDoubt === doubtSection.id && (
-              <div className="ml-6 pb-2">
-                {doubtSection.questions.map((question) => {
+              <div className="ml-2 sm:ml-3 md:ml-5 pb-2">
+                {doubtSection.questions.map((question, idx) => {
                   const isActive = currentQuestion === question.id;
                   return (
                     <Link
                       key={question.id}
                       href={`/support/${currentTopic}/${doubtSection.id}/${question.id}`}
-                      className={`block px-2 text-[12px] font-medium font-poppins transition-colors ${
+                      className={`block p-2 py-1 sm:py-[5px] text-xs sm:text-sm transition-colors ${
                         isActive
-                          ? 'bg-blue-100 text-blue-800 border-l-[2px] border-black'
+                          ? ' border-l-2 border-black'
                           : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 border-l border-gray-400'
-                      }`}
+                      }${idx === 0 ? ' pt-2 sm:pt-3 md:pt-[14px]' : ''}`}
                     >
-                      <div className="line-clamp-2">{question.question}</div>
+                      <div className="line-clamp-2 pl-2">{question.question}</div>
                     </Link>
                   );
                 })}

@@ -24,11 +24,11 @@ const QuestionPage: React.FC = () => {
   // Function to safely highlight text while preserving HTML structure
   const highlightInHtml = (html: string, query: string) => {
     if (!query.trim()) return html;
-    
+
     // Create a temporary DOM element to parse HTML
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
-    
+
     // Function to recursively process text nodes
     const processTextNodes = (node: Node) => {
       if (node.nodeType === Node.TEXT_NODE) {
@@ -46,7 +46,7 @@ const QuestionPage: React.FC = () => {
         children.forEach(child => processTextNodes(child));
       }
     };
-    
+
     processTextNodes(tempDiv);
     return tempDiv.innerHTML;
   };
@@ -54,7 +54,7 @@ const QuestionPage: React.FC = () => {
   // Function to check if search query exists in text content only
   const hasTextMatch = (html: string, query: string) => {
     if (!query.trim()) return true;
-    
+
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
     const plainText = tempDiv.textContent || tempDiv.innerText || '';
@@ -64,16 +64,16 @@ const QuestionPage: React.FC = () => {
   // Filter and highlight answer content based on search query
   const processedAnswer = useMemo(() => {
     if (!questionData) return '';
-    
+
     if (!searchQuery.trim()) {
       return questionData.answer;
     }
-    
+
     // Check if search query exists in plain text content
     if (!hasTextMatch(questionData.answer, searchQuery)) {
       return questionData.answer; // Return original if no match in text content
     }
-    
+
     // Highlight matches in HTML while preserving structure
     return highlightInHtml(questionData.answer, searchQuery);
   }, [questionData, searchQuery]);
@@ -96,54 +96,58 @@ const QuestionPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white pt-20 mx-auto mb-10">
-      <div className='bg-[#F5F7FA] w-full px-50'>
+      <div className='bg-[#F5F7FA] w-full px-50 -mt-2'>
         {/* Search Bar */}
-        <div className="bg-[#F5F7FA] px-6 py-2 pb-0 max-w-7xl mx-20">
-          <div className="relative max-w-xl mx-auto mt-10">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-6 w-6 text-gray-400" />
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-[#F5F7FA] px-2 sm:px-6 py-2 pb-0 max-w-7xl mx-auto">
+            <div className="relative w-full max-w-full mx-auto mt-4 sm:mt-6 md:mt-8 lg:mt-10">
+              <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 md:pl-6 flex items-center pointer-events-none">
+                <Search className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-gray-400" />
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search for anything..."
+                className="block w-full h-10 sm:h-12 md:h-14 lg:h-16 pl-10 sm:pl-12 md:pl-14 lg:pl-16 pr-3 sm:pr-4 md:pr-6 py-2 sm:py-3 rounded-[8px] sm:rounded-[10px] md:rounded-[12px] leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
+              />
             </div>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search for anything..."
-              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-            />
           </div>
         </div>
 
         {/* Breadcrumb */}
-        <div className="bg-[#F5F7FA] px-50 mt-10">
-          <div className="w-full mx-auto px-40 py-4">
-            <nav className="flex items-center space-x-2 text-sm text-gray-600">
-              <Link href="/" className="hover:text-blue-600">Home</Link>
-              <ChevronRight className="w-4 h-4" />
-              <Link href="/" className="hover:text-blue-600">Support</Link>
-              <ChevronRight className="w-4 h-4" />
-              <span className="text-[#064D51] font-medium">{topicTitle}</span>
-            </nav>
+        <div className="bg-[#F5F7FA] px-0 sm:pr-4 mt-4 sm:mt-6 md:mt-8 lg:mt-10">
+          <div className="max-w-7xl mx-auto pl-0 py-2 sm:py-4">
+            <div className="max-w-7xl pl-0">
+              <nav className="flex flex-wrap items-center space-x-1 sm:space-x-2 text-xs sm:text-sm md:text-base align-left font-regular font-poppins text-gray-600">
+                <Link href="/" className="hover:text-[#064D51] truncate">Home</Link>
+                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                <Link href="/" className="hover:text-[#064D51] truncate">Support</Link>
+                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                <Link href={`/support/${topic}`} className="hover:text-[#064D51] truncate">{topicTitle}</Link>
+                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                <span className="text-[#064D51] font-medium truncate">{doubtTitle}</span>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="flex w-full mt-10 px-40">
+      <div className="flex flex-col lg:flex-row w-full mt-6 sm:mt-8 md:mt-10 max-w-7xl mx-auto px-3 sm:px-4 lg:px-0">
         {/* Sidebar */}
-        <QuestionSidebar
-          currentTopic={topic}
-          currentDoubt={doubt}
-          currentQuestion={question}
-        />
+        <div className="hidden lg:block w-full lg:w-80 xl:w-96 bg-white h-auto lg:h-full overflow-x-auto lg:overflow-y-auto border-b lg:border-b-0 lg:-pr-2">
+          <QuestionSidebar
+            currentTopic={topic}
+            currentDoubt={doubt}
+            currentQuestion={question}
+          />
+        </div>
 
         {/* Main Content */}
-        <div className="flex-1 bg-white border-l-2 border-gray-200 mt-3">
-          <div className="p-8 pt-0">
-            <h1 className="text-xl font-semibold text-gray-900 mb-6">{questionData.question}</h1>
-
-            <div
-              className="prose prose-gray max-w-none text-gray-700"
-              dangerouslySetInnerHTML={{ __html: processedAnswer }}
-            />
+        <div className="flex-1 bg-white lg:border-t-0 lg:border-l-2 mt-4 sm:mt-6 lg:mt-0 lg:ml-3 xl:ml-5 border-gray-200 pl-0 sm:pl-4 lg:pl-8 xl:pl-[60px] pr-3 sm:pr-4 lg:pr-0">
+          <div className="pt-0 w-full max-w-none sm:max-w-[95%] md:max-w-[810px] mx-auto lg:mx-0">
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-[28px] font-poppins font-medium text-gray-900 mb-3 sm:mb-4 md:mb-6 leading-tight">{questionData.question}</h1>
+            <div className="prose prose-gray max-w-none text-gray-700" dangerouslySetInnerHTML={{ __html: processedAnswer }} />
           </div>
         </div>
       </div>
