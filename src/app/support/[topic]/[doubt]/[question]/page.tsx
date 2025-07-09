@@ -100,7 +100,7 @@ const QuestionPage: React.FC = () => {
         {/* Search Bar */}
         <div className="max-w-7xl mx-auto">
           <div className="bg-[#F5F7FA] px-2 sm:px-6 py-2 pb-0 max-w-7xl mx-auto">
-            <div className="relative w-full max-w-full mx-auto mt-4 sm:mt-6 md:mt-8 lg:mt-10">
+            <div className="relative max-w-3xl mx-auto mt-4 sm:mt-6 md:mt-8 lg:mt-10">
               <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 md:pl-6 flex items-center pointer-events-none">
                 <Search className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-gray-400" />
               </div>

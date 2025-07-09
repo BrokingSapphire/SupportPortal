@@ -145,7 +145,10 @@ const HelpCenterHomepage: React.FC = () => {
                     className="w-[720px] pl-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-400"
                   />
                 </form>
-                <button className="flex items-center space-x-2 py-3 text-blue-600 transition-colors whitespace-nowrap flex-shrink-0">
+                <button
+                  className="flex items-center space-x-2 py-3 text-blue-600 transition-colors whitespace-nowrap flex-shrink-0"
+                  onClick={() => router.push("/support/mytickets")}
+                >
                   <span className="font-medium font-poppins text-[20px] text-[#064D51]">My Tickets</span>
                   <img
                     src="/home/ticket.svg"
