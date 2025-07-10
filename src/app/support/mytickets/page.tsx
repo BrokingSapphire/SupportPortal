@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Search, ChevronRight, X } from "lucide-react";
+import Image from "next/image";
 
 const TICKETS = [
     {
@@ -33,7 +34,7 @@ const STATUS_STYLES: Record<string, string> = {
 
 const TABS = ["All", "Active", "Closed", "Resolved"];
 
-function ChatbotModal({ ticket, onClose }: { ticket: any, onClose: () => void }) {
+function ChatbotModal({ ticket, onClose }: { ticket: { number: string; updated: string; subject: string; status: string }, onClose: () => void }) {
     // Dummy messages for demo
     const messages = [
         {
@@ -79,12 +80,12 @@ function ChatbotModal({ ticket, onClose }: { ticket: any, onClose: () => void })
               display: none;
             }
           `}</style>
-                    {messages.map((msg, idx) => (
+                    {messages.map((msg) => (
                         <React.Fragment key={msg.id}>
                             <div className={`flex mb-3 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
                                 {msg.sender === "support" && (
                                     <div className="flex-shrink-0 mr-2 pl-3 flex items-end">
-                                        <img src="/avatar-support.png" alt="Support" className="w-7 h-7 rounded-full bg-gray-200" />
+                                        <Image src="/avatar-support.png" alt="Support" width={28} height={28} className="w-7 h-7 rounded-full bg-gray-200" />
                                     </div>
                                 )}
                                 <div className={`max-w-[70%] px-4 py-2 text-[14px] font-medium font-poppins ${msg.sender === "user" ? "bg-[#0a8080] text-white rounded-[16px] rounded-br-[4px]" : "bg-gray-100 rounded-[16px] rounded-bl-[4px] text-[#687280]"}`}>
@@ -93,15 +94,15 @@ function ChatbotModal({ ticket, onClose }: { ticket: any, onClose: () => void })
                                 </div>
                                 {msg.sender === "user" && (
                                     <div className="flex-shrink-0 ml-2 pr-3 flex items-end">
-                                        <img src="/avatar-user.png" alt="You" className="w-7 h-7 rounded-full bg-gray-200" />
+                                        <Image src="/avatar-user.png" alt="You" width={28} height={28} className="w-7 h-7 rounded-full bg-gray-200" />
                                     </div>
                                 )}
                             </div>
                             {/* Show info text after first user message only */}
-                            {msg.sender === "user" && idx === 0 && (
+                            {msg.sender === "user" && msg.id === 1 && (
                                 <div className="flex items-center w-full mb-3">
                                     <div className="flex-grow h-px bg-gray-200" />
-                                    <span className="mx-2 text-[#6b7280] text-[12px] font-poppins font-medium whitespace-nowrap">You're now chatting with Ayush Shs</span>
+                                    <span className="mx-2 text-[#6b7280] text-[12px] font-poppins font-medium whitespace-nowrap">You&apos;re now chatting with Ayush Shs</span>
                                     <div className="flex-grow h-px bg-gray-200" />
                                 </div>
                             )}
@@ -110,7 +111,7 @@ function ChatbotModal({ ticket, onClose }: { ticket: any, onClose: () => void })
                 </div>
                 {/* Input */}
                 <form className="flex items-center border-t border-gray-200 px-4 py-3 bg-white rounded-b-xl overflow-hidden">
-                    <img src="/documentIcon.svg" alt="Attach" className="w-6 h-6 mr-3 cursor-pointer" />
+                    <Image src="/documentIcon.svg" alt="Attach" width={24} height={24} className="w-6 h-6 mr-3 cursor-pointer" />
                     <input
                         type="text"
                         value={input}
@@ -119,7 +120,7 @@ function ChatbotModal({ ticket, onClose }: { ticket: any, onClose: () => void })
                         className="flex-1 px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0a8080] text-sm bg-[#F5F7FA]"
                     />
                     <button type="submit" className="ml-2 p-2 rounded-lg hover:bg-[#e6f2f2] transition-colors flex items-center justify-center">
-                        <img src="/sendIcon.svg" alt="Send" className="w-6 h-6" />
+                        <Image src="/sendIcon.svg" alt="Send" width={24} height={24} className="w-6 h-6" />
                     </button>
                 </form>
             </div>
@@ -130,7 +131,12 @@ function ChatbotModal({ ticket, onClose }: { ticket: any, onClose: () => void })
 export default function MyTicketsPage() {
     const [activeTab, setActiveTab] = useState("All");
     const [searchQuery, setSearchQuery] = useState("");
-    const [chatTicket, setChatTicket] = useState<any>(null);
+    const [chatTicket, setChatTicket] = useState<{
+        number: string;
+        updated: string;
+        subject: string;
+        status: string;
+    } | null>(null);
 
     // Prevent body scroll when chatbot is open
     useEffect(() => {

@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { getDoubtsByTopic, getQuestionsByDoubt, getTopicTitle, getDoubtTitle } from '@/constants';
+import Image from 'next/image';
+import { getDoubtsByTopic, getQuestionsByDoubt, getTopicTitle } from '@/constants';
 
 interface SidebarProps {
   currentTopic: string;
@@ -66,9 +67,9 @@ const QuestionSidebar: React.FC<SidebarProps> = ({ currentTopic, currentDoubt, c
             >
               <div className="flex items-center ml-1 sm:ml-2 md:ml-[8px]">
                 {expandedDoubt === doubtSection.id ? (
-                  <img src="/questions list/rightarrow.svg" alt="Collapse" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 rotate-90 transition-transform duration-200 flex-shrink-0" />
+                  <Image src="/questions list/rightarrow.svg" alt="Collapse" width={24} height={24} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 rotate-90 transition-transform duration-200 flex-shrink-0" />
                 ) : (
-                  <img src="/questions list/rightarrow.svg" alt="Expand" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 transition-transform duration-200 flex-shrink-0" />
+                  <Image src="/questions list/rightarrow.svg" alt="Expand" width={24} height={24} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 transition-transform duration-200 flex-shrink-0" />
                 )}
                 <span className="font-medium text-sm sm:text-base">{doubtSection.title}</span>
               </div>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
 import { topics, getSubcategoriesByTopic } from '@/constants';
+import Image from 'next/image';
 
 interface HelpLink {
   text: string;
@@ -60,9 +61,11 @@ const HelpCenterHomepage: React.FC = () => {
 
       const iconPath = iconMap[topicId] || '/home/account.svg';
       return (
-        <img 
+        <Image 
           src={iconPath} 
           alt={topic.title} 
+          width={40}
+          height={40}
           className=""
         />
       );
@@ -150,9 +153,11 @@ const HelpCenterHomepage: React.FC = () => {
                   onClick={() => router.push("/support/mytickets")}
                 >
                   <span className="font-medium font-poppins text-[20px] text-[#064D51]">My Tickets</span>
-                  <img
+                  <Image
                     src="/home/ticket.svg"
                     alt="Ticket"
+                    width={30}
+                    height={30}
                     className="w-[30px] h-[30px] object-contain"
                   />
                 </button>
@@ -161,9 +166,11 @@ const HelpCenterHomepage: React.FC = () => {
             
             {/* Help Center Illustration */}
             <div className="ml-8 flex-shrink-0">
-              <img
+              <Image
                 src="/home/home1.svg"
                 alt="Help Center Illustration"
+                width={290}
+                height={212}
                 className="w-[290px] h-[212px] object-contain"
               />
             </div>
@@ -245,7 +252,7 @@ const HelpCenterHomepage: React.FC = () => {
         </div>
         {getFilteredCategories().length === 0 && searchQuery && (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No results found for "{searchQuery}"</p>
+            <p className="text-gray-500 text-lg">No results found for &quot;{searchQuery}&quot;</p>
             <p className="text-gray-400 text-sm mt-2">Try searching with different keywords or browse by category.</p>
           </div>
         )}

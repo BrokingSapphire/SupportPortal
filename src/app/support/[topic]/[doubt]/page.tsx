@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight, Search, ArrowLeft, ChevronDown } from 'lucide-react';
-import { useParams, useRouter } from 'next/navigation';
+import { ChevronRight, Search } from 'lucide-react';
+import { useParams } from 'next/navigation';
+import Image from 'next/image';
 import { getSubcategoriesByTopic, getSubcategoryTitle, getCategoryTitle, getQuestionsBySubcategory } from '@/constants';
 
 const DoubtPage: React.FC = () => {
   const params = useParams();
-  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [expandedDoubt, setExpandedDoubt] = useState<string>(params.doubt as string);
 
@@ -25,17 +25,13 @@ const DoubtPage: React.FC = () => {
   console.log('Questions:', questions);
   console.log('Questions length:', questions?.length);
 
-  const toggleDoubt = (doubtId: string) => {
-    setExpandedDoubt(expandedDoubt === doubtId ? '' : doubtId);
-  };
-
   if (!topicTitle || !doubtTitle) {
     return (
       <div className="min-h-screen bg-gray-50 pt-16 sm:pt-20">
         <div className="w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
           <div className="text-center">
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Page Not Found</h1>
-            <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">The topic or doubt you're looking for doesn't exist.</p>
+            <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">The topic or doubt you&apos;re looking for doesn&apos;t exist.</p>
             <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm sm:text-base">
               Back to Help Center
             </Link>
@@ -94,7 +90,7 @@ const DoubtPage: React.FC = () => {
 
           {/* Navigation */}
           <div className="p-2 sm:p-4 pl-2 pt-0">
-            {getSubcategoriesByTopic(topic).map((doubtItem, idx, arr) => (
+            {getSubcategoriesByTopic(topic).map((doubtItem: { id: string; title: string }, idx: number, arr: { id: string; title: string }[]) => (
               <div
                 key={doubtItem.id}
                 className={`rounded-lg pl-0 ${expandedDoubt === doubtItem.id
@@ -110,9 +106,9 @@ const DoubtPage: React.FC = () => {
                 >
                   <div className="flex items-center ml-1 sm:ml-2 md:ml-[8px]">
                     {expandedDoubt === doubtItem.id ? (
-                      <img src="/questions list/rightarrow.svg" alt="Collapse" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 rotate-90 transition-transform duration-200 flex-shrink-0" />
+                      <Image src="/questions list/rightarrow.svg" alt="Collapse" width={24} height={24} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 rotate-90 transition-transform duration-200 flex-shrink-0" />
                     ) : (
-                      <img src="/questions list/rightarrow.svg" alt="Expand" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 transition-transform duration-200 flex-shrink-0" />
+                      <Image src="/questions list/rightarrow.svg" alt="Expand" width={24} height={24} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 sm:mr-3 md:mr-[14px] rounded-md text-gray-500 transition-transform duration-200 flex-shrink-0" />
                     )}
                     <span className="font-medium text-sm sm:text-base">{doubtItem.title}</span>
                   </div>
@@ -121,7 +117,7 @@ const DoubtPage: React.FC = () => {
                 {/* Questions List */}
                 {expandedDoubt === doubtItem.id && (
                   <div className="ml-2 sm:ml-3 md:ml-5 pb-2">
-                    {getQuestionsBySubcategory(topic, doubtItem.id).map((question: any, idx: number) => {
+                    {getQuestionsBySubcategory(topic, doubtItem.id).map((question: { id: string; question: string }, idx: number) => {
                       const isActive = doubt === doubtItem.id && typeof window !== 'undefined' && window.location.pathname.includes(question.id);
                       return (
                         <Link
@@ -152,11 +148,11 @@ const DoubtPage: React.FC = () => {
             <div className="space-y-0">
               {questions && questions.length > 0 ? (
                 questions
-                  .filter((question: any) =>
+                  .filter((question: { id: string; question: string }) =>
                     !searchQuery ||
                     question.question.toLowerCase().includes(searchQuery.toLowerCase())
                   )
-                  .map((question: any) => (
+                  .map((question: { id: string; question: string }) => (
                     <Link
                       key={question.id}
                       href={`/support/${topic}/${doubt}/${question.id}`}
@@ -176,11 +172,11 @@ const DoubtPage: React.FC = () => {
             </div>
 
             {/* No results message */}
-            {searchQuery && questions && questions.filter((question: any) =>
+            {searchQuery && questions && questions.filter((question: { id: string; question: string }) =>
               question.question.toLowerCase().includes(searchQuery.toLowerCase())
             ).length === 0 && (
                 <div className="text-center py-6 sm:py-8">
-                  <p className="text-gray-500 text-xs sm:text-sm">No questions found for "{searchQuery}"</p>
+                  <p className="text-gray-500 text-xs sm:text-sm">No questions found for &quot;{searchQuery}&quot;</p>
                 </div>
               )}
           </div>
