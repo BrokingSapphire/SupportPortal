@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { X } from "lucide-react";
+import Image from 'next/image';
 
 const DUMMY_MESSAGES = [
     {
@@ -63,11 +64,11 @@ export default function TicketChat() {
                 </div>
                 {/* Chat Area */}
                 <div ref={chatRef} className="flex-1 overflow-y-auto px-4 py-4 bg-white">
-                    {messages.map((msg, idx) => (
+                    {messages.map((msg) => (
                         <div key={msg.id} className={`flex mb-4 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
                             {msg.sender === "support" && (
                                 <div className="flex-shrink-0 mr-2">
-                                    <img src="/avatar-support.png" alt="Support" className="w-7 h-7 rounded-full bg-gray-200" />
+                                    <Image src="/avatar-support.png" alt="Support" width={28} height={28} className="w-7 h-7 rounded-full bg-gray-200" />
                                 </div>
                             )}
                             <div className={`max-w-[70%] rounded-lg px-4 py-2 text-sm ${msg.sender === "user" ? "bg-[#0a8080] text-white" : "bg-gray-100 text-gray-800"}`}>
@@ -76,7 +77,7 @@ export default function TicketChat() {
                             </div>
                             {msg.sender === "user" && (
                                 <div className="flex-shrink-0 ml-2">
-                                    <img src="/avatar-user.png" alt="You" className="w-7 h-7 rounded-full bg-gray-200" />
+                                    <Image src="/avatar-user.png" alt="You" width={28} height={28} className="w-7 h-7 rounded-full bg-gray-200" />
                                 </div>
                             )}
                         </div>

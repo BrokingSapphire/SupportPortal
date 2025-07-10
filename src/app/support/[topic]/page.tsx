@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight, Search, ArrowLeft } from 'lucide-react';
-import { useParams, useRouter } from 'next/navigation';
+import { ChevronRight, Search } from 'lucide-react';
+import { useParams } from 'next/navigation';
 import { getTopicTitle, getDoubtsByTopic } from '@/constants';
 
 const TopicPage: React.FC = () => {
   const params = useParams();
-  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   
   const topic = params.topic as string;
@@ -30,7 +29,7 @@ const TopicPage: React.FC = () => {
     );
   }
 
-  const filteredDoubts = doubts.filter((doubt: any) =>
+  const filteredDoubts = doubts.filter((doubt: { id: string; title: string }) =>
     doubt.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -75,7 +74,7 @@ const TopicPage: React.FC = () => {
             
             {/* Doubts Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredDoubts.map((doubt: any) => (
+              {filteredDoubts.map((doubt: { id: string; title: string }) => (
                 <Link
                   key={doubt.id}
                   href={`/support/${topic}/${doubt.id}`}
